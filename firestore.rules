@@ -1,0 +1,32 @@
+rules_version = '2';
+
+// Firestore security rules for Halfsies.
+// Paste them in Firebase console → Firestore Database → Rules → Publish.
+//
+// - users/<uid>/**   personal data: only its owner can read and write it
+// - shared/**        household data (shared/casa and its collections): the household members
+//
+// Only the Google accounts listed below can get in. Replace the two example
+// addresses with the Google accounts of your household (lowercase).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function membro() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.lower() in [
+          'you@example.com',
+          'partner@example.com'
+        ];
+    }
+
+    match /users/{uid}/{rest=**} {
+      allow read, write: if membro() && request.auth.uid == uid;
+    }
+
+    match /shared/{rest=**} {
+      allow read, write: if membro();
+    }
+  }
+}

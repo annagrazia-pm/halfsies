@@ -1,0 +1,11 @@
+{
+  "app": "halfsies",
+  "versione": 2,
+  "casa": {
+    "members": [
+      { "key": "anna", "name": "Anna", "email": "you@example.com" },
+      { "key": "luca", "name": "Luca", "email": "partner@example.com" }
+    ]
+  },
+  "dati": {}
+}
