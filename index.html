@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Budget">
+<meta name="apple-mobile-web-app-title" content="Halfsies">
 <title>Halfsies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,19 +215,19 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   <div class="top">
     <h1 id="ttl">Halfsies</h1>
     <div class="mo" id="mo" hidden>
-      <button type="button" id="mprev" aria-label="Periodo precedente">‹</button>
+      <button type="button" id="mprev" aria-label="Previous period">‹</button>
       <span id="molab" class="num"></span>
-      <button type="button" id="mnext" aria-label="Periodo successivo">›</button>
+      <button type="button" id="mnext" aria-label="Next period">›</button>
     </div>
   </div>
 
   <!-- ACCESSO -->
   <div class="card" id="gate" hidden>
-    <h2 id="gate-t">Accedi</h2>
+    <h2 id="gate-t">Sign in</h2>
     <p id="gate-p"></p>
-    <button class="go" id="gate-in" type="button" hidden>Accedi con Google</button>
-    <button class="go" id="gate-up" type="button" hidden>Carica il file di avvio</button>
-    <button class="go ghost" id="gate-out" type="button" hidden>Esci</button>
+    <button class="go" id="gate-in" type="button" hidden>Sign in with Google</button>
+    <button class="go" id="gate-up" type="button" hidden>Upload the start file</button>
+    <button class="go ghost" id="gate-out" type="button" hidden>Sign out</button>
   </div>
 
   <div id="app" hidden>
@@ -236,13 +236,13 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       <h2 id="onb-t"></h2>
       <p id="onb-p"></p>
       <div class="onbbtn">
-        <button class="go small" type="button" id="onb-imp">Importa da estratto conto</button>
-        <button class="go small ghost" type="button" id="onb-man">Le aggiungo a mano</button>
-        <button class="go small" type="button" id="onb-ok" hidden>Va bene così</button>
-        <button class="go small ghost" type="button" id="onb-more" hidden>Importa un altro file</button>
+        <button class="go small" type="button" id="onb-imp">Import from bank statement</button>
+        <button class="go small ghost" type="button" id="onb-man">I'll add them by hand</button>
+        <button class="go small" type="button" id="onb-ok" hidden>Looks good</button>
+        <button class="go small ghost" type="button" id="onb-more" hidden>Import another file</button>
       </div>
-      <p class="note"><button class="link" type="button" id="onb-niente">Non ho niente da aggiungere</button>
-        <button class="link" type="button" id="onb-redo" hidden>Qualcosa non va? Annulla l'importazione e rifalla</button></p>
+      <p class="note"><button class="link" type="button" id="onb-niente">Nothing to add</button>
+        <button class="link" type="button" id="onb-redo" hidden>Something wrong? Undo the import and start again</button></p>
     </div>
 
     <main id="view"></main>
@@ -250,62 +250,62 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   <!-- IMPORTA DA ESTRATTO CONTO -->
   <div class="scrim" id="scrim-imp" hidden>
    <div class="sheet wide" role="dialog" aria-modal="true" aria-labelledby="imptitle">
-    <div class="hd"><h2 id="imptitle">Importa da estratto conto</h2><button id="impclose" aria-label="Chiudi">×</button></div>
+    <div class="hd"><h2 id="imptitle">Import from bank statement</h2><button id="impclose" aria-label="Close">×</button></div>
     <div id="imp-1">
-      <p class="note">Scarica dalla tua banca la lista dei movimenti in CSV o in Excel, poi sceglila qui.
-        Il file resta su questo dispositivo: nell'app finiscono solo le righe che spunti, come spese comuni pagate da te.</p>
-      <button class="go" id="imp-pick" type="button">Scegli il file</button>
+      <p class="note">Download your transactions from your bank as CSV or Excel, then choose the file here.
+        The file stays on this device: only the rows you tick go into the app, as shared expenses paid by you.</p>
+      <button class="go" id="imp-pick" type="button">Choose the file</button>
       <input type="file" id="imp-file" accept=".csv,.txt,.xlsx,.xls,text/csv" hidden>
       <p class="note warn" id="imp-err" hidden></p>
     </div>
     <div id="imp-2" hidden>
       <p class="note" id="imp-fname"></p>
-      <div id="imp-contow" hidden><label for="imp-conto">Di quale tuo conto è questo estratto</label><select id="imp-conto"></select></div>
+      <div id="imp-contow" hidden><label for="imp-conto">Which of your accounts is this statement from</label><select id="imp-conto"></select></div>
       <details id="imp-cols">
-        <summary id="imp-colsum">Colonne del file</summary>
+        <summary id="imp-colsum">File columns</summary>
         <div class="impmap">
-          <div><label for="imp-cd">Data</label><select id="imp-cd"></select></div>
-          <div><label for="imp-cs">Descrizione</label><select id="imp-cs"></select></div>
-          <div><label for="imp-ca">Importo</label><select id="imp-ca"></select></div>
-          <div><label for="imp-seg">Nel file le uscite sono</label>
-            <select id="imp-seg"><option value="neg">Negative (−20,00)</option><option value="pos">Positive (20,00)</option></select></div>
+          <div><label for="imp-cd">Date</label><select id="imp-cd"></select></div>
+          <div><label for="imp-cs">Description</label><select id="imp-cs"></select></div>
+          <div><label for="imp-ca">Amount</label><select id="imp-ca"></select></div>
+          <div><label for="imp-seg">In the file, money out is</label>
+            <select id="imp-seg"><option value="neg">Negative (−20.00)</option><option value="pos">Positive (20.00)</option></select></div>
         </div>
       </details>
       <div style="display:flex;gap:.5rem">
-        <div style="flex:1"><label for="imp-from">Dal</label><input id="imp-from" type="date"></div>
-        <div style="flex:1"><label for="imp-to">Al</label><input id="imp-to" type="date"></div>
+        <div style="flex:1"><label for="imp-from">From</label><input id="imp-from" type="date"></div>
+        <div style="flex:1"><label for="imp-to">To</label><input id="imp-to" type="date"></div>
       </div>
-      <label for="imp-q">Cerca nella descrizione</label>
-      <input id="imp-q" type="search" placeholder="Esselunga, farmacia…">
+      <label for="imp-q">Search the description</label>
+      <input id="imp-q" type="search" placeholder="Supermarket, pharmacy…">
       <p class="note" id="imp-info"></p>
       <div id="imp-list"></div>
-      <div class="impbar"><button class="go" id="imp-save" type="button" disabled>Spunta le spese comuni pagate da te</button></div>
+      <div class="impbar"><button class="go" id="imp-save" type="button" disabled>Tick the shared expenses you paid</button></div>
     </div>
    </div>
   </div>
 
 </div>
 
-<nav class="nav" id="nav" aria-label="Sezioni" hidden>
+<nav class="nav" id="nav" aria-label="Sections" hidden>
   <div class="in">
     <button type="button" class="tab" data-act="tab" data-v="mov" aria-current="page">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="12" r="1" fill="currentColor"/><circle cx="4" cy="18" r="1" fill="currentColor"/></svg>Movimenti</button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="12" r="1" fill="currentColor"/><circle cx="4" cy="18" r="1" fill="currentColor"/></svg>Transactions</button>
     <button type="button" class="tab" data-act="tab" data-v="bud">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/></svg>Budget</button>
-    <button type="button" class="fab" data-act="add" aria-label="Aggiungi un movimento">+</button>
+    <button type="button" class="fab" data-act="add" aria-label="Add a transaction">+</button>
     <button type="button" class="tab" data-act="tab" data-v="rep">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20V11M12 20V5M19 20v-7"/></svg>Report</button>
     <button type="button" class="tab" data-act="tab" data-v="pat">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/></svg>Patrimonio</button>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/></svg>Net worth</button>
   </div>
 </nav>
 <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <div class="foot" id="foot" hidden>
-  Accesso come <span id="who"></span> · <a href="#" id="logout">Esci</a><br>
-  <a href="#" id="set-open">Le tue impostazioni</a> · <a href="#" id="bk-down">Scarica backup</a> · <a href="#" id="bk-up">Carica backup</a>
-  <span id="onb-foot" hidden><br><a href="#" id="onb-reopen">Importazione iniziale</a></span>
+  Signed in as <span id="who"></span> · <a href="#" id="logout">Sign out</a><br>
+  <a href="#" id="set-open">Your settings</a> · <a href="#" id="bk-down">Download backup</a> · <a href="#" id="bk-up">Upload backup</a>
+  <span id="onb-foot" hidden><br><a href="#" id="onb-reopen">Initial import</a></span>
   <input type="file" id="bk-file" accept=".json,application/json" hidden>
 </div>
 
@@ -329,13 +329,13 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
 
   /* ---------- costanti ---------- */
   var SOGLIA = 300;                // saldo del conto comune da non bucare
-  var MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
-  var MESIB = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+  var MESI = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var MESIB = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   // spese condivise: si dividono a metà, qualunque cosa siano (non solo la casa)
-  var CAT_COND = ["Spesa alimentare","Cene e aperitivi fuori","Casa e piccoli acquisti","Bollette","Viaggi e vacanze","Regali","Animali, cibo e veterinario","Auto, carburante e manutenzione","Altro condiviso"];
-  var BOLLETTE = {luce:"Luce", gas:"Gas", internet:"Internet", tari:"TARI", acqua:"Acqua"};
-  var CAT_INC = ["Stipendio","Tredicesima","Quattordicesima","Premio di produzione","Rimborso","Altra entrata"];
-  var RISPARMIO = ["Girofondo ai risparmi"];   // spostamenti verso i risparmi: non sono spese
+  var CAT_COND = ["Groceries","Eating out","Home and small purchases","Bills","Travel and holidays","Gifts","Pets, food and vet","Car, fuel and maintenance","Other shared"];
+  var BOLLETTE = {luce:"Electricity", gas:"Gas", internet:"Internet", tari:"Waste tax", acqua:"Water"};
+  var CAT_INC = ["Salary","13th-month pay","14th-month pay","Bonus","Refund","Other income"];
+  var RISPARMIO = ["Transfer to savings"];   // spostamenti verso i risparmi: non sono spese
   var COL = ["var(--c1)","var(--c2)","var(--c3)","var(--c4)","var(--c5)","var(--c7)","var(--c6)"];
   var COL_MIE = "var(--c7)", COL_COND = "var(--c1)";
 
@@ -345,8 +345,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
      Da spendere = entrate − fisse − risparmio; si divide tra le categorie con budget. */
   var SET_VUOTE = {
     entrate:0, q13:0, q14:0, fisse:[], risparmio:0,
-    catPer:[{n:"Viaggi, voli e treni",b:0},{n:"Regali, matrimoni e occasioni",b:0},{n:"Pranzi e uscite",b:0},{n:"Farmacia e cura personale",b:0},{n:"Abbonamenti digitali",b:0}],
-    catTrack:[{n:"Abbigliamento e shopping"},{n:"Altro personale"}]
+    catPer:[{n:"Trips, flights and trains",b:0},{n:"Gifts, weddings and occasions",b:0},{n:"Lunches and outings",b:0},{n:"Pharmacy and personal care",b:0},{n:"Digital subscriptions",b:0}],
+    catTrack:[{n:"Clothing and shopping"},{n:"Other personal"}]
   };
   var SET={}, CAT_PER=[], CAT_TRACK=[], FISSE=[];
   function pos(v){ v=+v; return isFinite(v) && v>0 ? v : 0; }
@@ -359,7 +359,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   function liberoMese(){ return pos(SET.entrate) - FISSE.reduce(function(s,f){return s+f.b;},0) - pos(SET.risparmio); }
   function budMioTot(){ return CAT_PER.reduce(function(s,c){return s+c.b;},0); }
   function catsMie(){
-    var l=CAT_PER.map(function(c){return c.n;}).concat(FISSE.map(function(f){return f.n;}).filter(function(n){return !/conto comune/i.test(n);}), CAT_TRACK.map(function(c){return c.n;}));
+    var l=CAT_PER.map(function(c){return c.n;}).concat(FISSE.map(function(f){return f.n;}).filter(function(n){return !/joint account|conto comune/i.test(n);}), CAT_TRACK.map(function(c){return c.n;}));
     if(l.indexOf(RISPARMIO[0])<0) l.push(RISPARMIO[0]);
     return l;
   }
@@ -372,7 +372,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
 
   /* ---------- stato ---------- */
   var db=null, user=null, uid=null;
-  var CASA=null, ME="", ME_NAME="", PK="", PARTNER="il partner";
+  var CASA=null, ME="", ME_NAME="", PK="", PARTNER="your partner";
   var now=new Date(), OGGI=now.toISOString().slice(0,10);
   var cur={y:now.getFullYear(), m:now.getMonth()};
   var S={tab:"mov", scope:"tutto", cat:"", q:"", budView:"m", edit:false, repPer:"anno"};
@@ -382,14 +382,19 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   var $=function(id){return document.getElementById(id);};
   function monthKey(y,m){return y+"-"+String(m+1).padStart(2,"0");}
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
-  function fmt(n,dec){ if(dec==null) dec=2; var neg=n<0, s=Math.abs(n).toFixed(dec).split("."); var i=s[0].replace(/\B(?=(\d{3})+(?!\d))/g,"."); return (neg?"−":"")+i+(s[1]?","+s[1]:""); }
+  function fmt(n,dec){ if(dec==null) dec=2; var neg=n<0, s=Math.abs(n).toFixed(dec).split("."); var i=s[0].replace(/\B(?=(\d{3})+(?!\d))/g,","); return (neg?"−":"")+i+(s[1]?"."+s[1]:""); }
   function eur(v){ return fmt(v,2); }
   function eur0(v){ return fmt(v,0); }
   function sg(v){ return (v>=0?"+":"−")+fmt(Math.abs(v),0); }
   function sum(a){ return a.reduce(function(s,v){return s+v;},0); }
-  function aP(nome){ return (/^[aA]/.test(nome) ? "ad " : "a ")+nome; }
   function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("on"); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove("on");},2400); }
-  function num(v){ var x=parseFloat(String(v==null?"":v).replace(/\s/g,"").replace(/\.(?=\d{3}(\D|$))/g,"").replace(",",".")); return isFinite(x) ? Math.round(x*100)/100 : 0; }
+  // amounts typed or read from a bank file: "1,234.50", "1.234,50", "12.5" and "12,5" all work
+  function num(v){
+    var t=String(v==null?"":v).replace(/[\s€]/g,""), c=t.lastIndexOf(","), d=t.lastIndexOf(".");
+    if(c>=0 && d>=0) t = c>d ? t.replace(/\./g,"").replace(",",".") : t.replace(/,/g,"");
+    else if(c>=0) t = /^[-−+]?\d{1,3}(,\d{3})+$/.test(t) ? t.replace(/,/g,"") : t.replace(",",".");
+    else if(d>=0 && /^[-−+]?\d{1,3}(\.\d{3})+$/.test(t)) t=t.replace(/\./g,"");
+    var x=parseFloat(t.replace("−","-")); return isFinite(x) ? Math.round(x*100)/100 : 0; }
   function catCol(cat){
     var i=CAT_COND.indexOf(cat); if(i>=0) return COL[i%COL.length];
     var l=catsMie(); i=l.indexOf(cat); return i>=0 ? COL[(i+3)%COL.length] : "var(--c6)";
@@ -406,12 +411,12 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   }
   function dayLabel(d){
     var ieri=new Date(now.getTime()-86400000).toISOString().slice(0,10);
-    if(d===OGGI) return "Oggi"; if(d===ieri) return "Ieri";
-    var s=new Date(d+"T12:00:00").toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
+    if(d===OGGI) return "Today"; if(d===ieri) return "Yesterday";
+    var s=new Date(d+"T12:00:00").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
     return s.charAt(0).toUpperCase()+s.slice(1);
   }
   function chiOf(e){ return e.chi || "conto"; }
-  function chiLab(c){ return c===ME ? "pagata da te" : c===PK ? "pagata da "+PARTNER : c==="conto" ? "dal conto comune" : "pagata da "+c; }
+  function chiLab(c){ return c===ME ? "paid by you" : c===PK ? "paid by "+PARTNER : c==="conto" ? "from the joint account" : "paid by "+c; }
   function isCurMonth(){ return cur.y===now.getFullYear() && cur.m===now.getMonth(); }
   function giorniRestanti(){ return new Date(cur.y,cur.m+1,0).getDate()-now.getDate(); }
 
@@ -455,9 +460,9 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     shared.filter(function(e){return e.month===mk;}).concat(expandRules(recCom,y,m)).forEach(function(e){
       if(e.tipo==="una"){ una+=e.amount||0; return; }
       // una spesa condivisa in una delle categorie tue (es. Farmacia) nel budget insieme va in «Altro condiviso»
-      var c=e.cat; if(CAT_COND.indexOf(c)<0) c="Altro condiviso"; out[c]=(out[c]||0)+(e.amount||0);
+      var c=e.cat; if(CAT_COND.indexOf(c)<0) c="Other shared"; out[c]=(out[c]||0)+(e.amount||0);
     });
-    var bl=billsFor(mk); if(bl) out["Bollette"]=(out["Bollette"]||0)+bl;
+    var bl=billsFor(mk); if(bl) out["Bills"]=(out["Bills"]||0)+bl;
     return {cats:out, una:una, tot:sum(Object.keys(out).map(function(k){return out[k];}))};
   }
   // spese personali del mese per categoria (senza i giroconti verso i risparmi)
@@ -519,7 +524,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   }
 
   /* ---------- testata: un solo selettore di periodo ---------- */
-  var TITOLI={mov:"Movimenti", bud:"Budget", rep:"Report", pat:"Patrimonio"};
+  var TITOLI={mov:"Transactions", bud:"Budget", rep:"Report", pat:"Net worth"};
   function anno(){ return (S.tab==="bud"&&S.budView==="a") || (S.tab==="rep"&&S.repPer==="anno"); }
   function paintMonth(){
     var a=anno();
@@ -546,7 +551,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   function resubscribe(){
     subs.forEach(function(u){try{u();}catch(e){}}); subs=[];
     if(!db) return;
-    function on(path, fn){ subs.push(db.collection(path).onSnapshot(fn, function(e){ console.warn("Lettura non riuscita:", path, e && e.code); })); }
+    function on(path, fn){ subs.push(db.collection(path).onSnapshot(fn, function(e){ console.warn("Read failed:", path, e && e.code); })); }
     on("shared/expenses", function(s){ shared=collect(s); pronti.shared=true; render(); });
     on("shared/bills", function(s){ bills=collect(s); render(); });
     on("shared/recurring", function(s){ recCom=collect(s); render(); });
@@ -584,20 +589,20 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       var s={}; for(var k in x.spesa) s[k]=x.spesa[k];
       db.doc("data/users/"+uid+"/expenses/"+x._id).set(s)
         .then(function(){ return db.doc("shared/passaggi/"+x._id).delete(); })
-        .then(function(){ toast((x.da===PK?PARTNER:"L'altro")+" ha spostato tra le tue spese: "+(s.note||s.cat||"una spesa")+", "+eur(s.amount||0)); })
-        .catch(function(e){ delete ricevendo[x._id]; console.warn("Passaggio non riuscito", e); });
+        .then(function(){ toast((x.da===PK?PARTNER:"Your partner")+" moved this to your expenses: "+(s.note||s.cat||"an expense")+", "+eur(s.amount||0)); })
+        .catch(function(e){ delete ricevendo[x._id]; console.warn("Hand-over failed", e); });
     });
   }
 
   /* ---------- schermate: accesso oppure app ---------- */
   var GATE={
-    attesa:   ["Halfsies", "Un attimo…", []],
-    "in":     ["Halfsies", "Accedi con il tuo account Google per vedere e aggiornare i conti di casa.", ["in"]],
-    noaccess: ["Account non abilitato", "L'account %s non fa parte di questa casa. Esci e accedi con l'account giusto.", ["out"]],
-    setup:    ["Manca il file di avvio", "Accesso fatto con %s. La casa non ha ancora dati: carica il file di avvio con i membri della casa (vedi il README).", ["up","out"]],
-    errore:   ["Qualcosa non va", "Non riesco a leggere i dati. Controlla la connessione e ricarica la pagina.", ["out"]],
-    offline:  ["Qualcosa non va", "Non riesco a collegarmi al database. Controlla la connessione e ricarica la pagina.", []],
-    noconfig: ["Halfsies", "Il collegamento al database non è configurato.", []]
+    attesa:   ["Halfsies", "One moment…", []],
+    "in":     ["Halfsies", "Sign in with your Google account to see and update your household budget.", ["in"]],
+    noaccess: ["Account not allowed", "The account %s is not part of this household. Sign out and sign in with the right account.", ["out"]],
+    setup:    ["Start file missing", "Signed in as %s. The household has no data yet: upload the start file with the household members (see the README).", ["up","out"]],
+    errore:   ["Something went wrong", "Could not read the data. Check your connection and reload the page.", ["out"]],
+    offline:  ["Something went wrong", "Could not connect to the database. Check your connection and reload the page.", []],
+    noconfig: ["Halfsies", "The database connection is not configured (see config.js).", []]
   };
   function showGate(stato, email){
     subs.forEach(function(u){try{u();}catch(e){}}); subs=[];
@@ -645,7 +650,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       expandRules(recInc,cur.y,cur.m).forEach(function(e){ r.push({k:"inr", e:e, coll:U+"incomeRec"}); });
       giroconti.forEach(function(g){ if(g.month===mk) r.push({k:"giro", e:g, path:U+"giroconti/"+g._id}); });
     }
-    r.forEach(function(x){ x.casa = /^(sh|shr|bill|dep|depr)$/.test(x.k); x.d = x.k==="bill" ? billDate(x.e) : (x.e.date || (x.e.month||mk)+"-01"); x.cat = x.k==="bill" ? "Bollette" : x.k==="dep"||x.k==="depr" ? "Conto comune" : x.k==="giro" ? "Giroconto" : x.e.cat||""; });
+    r.forEach(function(x){ x.casa = /^(sh|shr|bill|dep|depr)$/.test(x.k); x.d = x.k==="bill" ? billDate(x.e) : (x.e.date || (x.e.month||mk)+"-01"); x.cat = x.k==="bill" ? "Bills" : x.k==="dep"||x.k==="depr" ? "Joint account" : x.k==="giro" ? "Transfer" : x.e.cat||""; });
     if(S.cat) r=r.filter(function(x){ return x.cat===S.cat; });
     if(S.q){ var q=S.q.toLowerCase(); r=r.filter(function(x){ return ((x.e.note||"")+" "+x.cat+" "+(BOLLETTE[x.e.type]||"")).toLowerCase().indexOf(q)>=0; }); }
     r.sort(function(a,b){ return a.d<b.d?1:a.d>b.d?-1:(b.e.ts||0)-(a.e.ts||0); });
@@ -656,36 +661,36 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     // stesso conto del Report e della lista: bollette nel mese in cui le paghi, una tantum comprese,
     // fuori i soldi messi da parte. Le parti hanno i centesimi, così la somma torna anche con il totale arrotondato.
     var y=cur.y, m=cur.m, sc=condReport(y,m), meta=sc/2, sm=mieReport(y,m), tot, tit, sub="";
-    if(S.scope==="casa"){ tot=sc; tit="Spese condivise a "+MESI[m]; sub="la tua metà: "+eur(meta); }
-    else if(S.scope==="mio"){ tot=sm; tit="Spese tue a "+MESI[m]; }
-    else { tot=sm+meta; tit="Speso da te a "+MESI[m]; sub=eur(sm)+" tue + "+eur(meta)+" tua metà delle condivise"; }
-    var c=contoPartner(), d=c.bal, dl = d>=0 ? PARTNER+" ti deve" : "Devi "+aP(PARTNER);
-    var h='<div class="row-ctl">'+seg("scope", S.scope, [["tutto","Tutto"],["casa","Condivise"],["mio","Mie"]], "Quali movimenti")+'</div>';
+    if(S.scope==="casa"){ tot=sc; tit="Shared spending in "+MESI[m]; sub="your half: "+eur(meta); }
+    else if(S.scope==="mio"){ tot=sm; tit="Your spending in "+MESI[m]; }
+    else { tot=sm+meta; tit="You spent in "+MESI[m]; sub=eur(sm)+" yours + "+eur(meta)+" your half of shared"; }
+    var c=contoPartner(), d=c.bal, dl = d>=0 ? PARTNER+" owes you" : "You owe "+PARTNER;
+    var h='<div class="row-ctl">'+seg("scope", S.scope, [["tutto","All"],["casa","Shared"],["mio","Mine"]], "Which transactions")+'</div>';
     h+='<div class="tiles">'
       +'<button type="button" class="tile" data-act="tab" data-v="bud"><span class="k">'+tit+'</span><span class="mid">'+eur0(tot)+'</span>'
-      +(sub?'<span class="sub">'+sub+'</span>':'')+'<span class="go-to">Vedi il budget →</span></button>'
+      +(sub?'<span class="sub">'+sub+'</span>':'')+'<span class="go-to">See the budget →</span></button>'
       +'<button type="button" class="tile" data-act="debito"><span class="k">'+dl+'</span><span class="mid '+(d>0?"good":d<0?"over":"")+'">'+eur(Math.abs(d))+'</span>'
-      +'<span class="go-to">'+(d?"Segna un rimborso →":"Siete pari")+'</span></button></div>';
-    var cats = S.scope==="casa" ? catsTutte().concat(["Conto comune"]) : catsTutte();
-    h+='<div class="search"><input id="q" type="search" placeholder="Cerca: Esselunga, treno…" value="'+esc(S.q)+'" aria-label="Cerca nei movimenti del mese"></div>';
-    h+='<div class="chips" role="group" aria-label="Categoria"><button type="button" class="chip" data-act="cat" data-v="" aria-pressed="'+(!S.cat)+'">Tutte</button>'
+      +'<span class="go-to">'+(d?"Record a repayment →":"You are even")+'</span></button></div>';
+    var cats = S.scope==="casa" ? catsTutte().concat(["Joint account"]) : catsTutte();
+    h+='<div class="search"><input id="q" type="search" placeholder="Search: supermarket, train…" value="'+esc(S.q)+'" aria-label="Search this month\'s transactions"></div>';
+    h+='<div class="chips" role="group" aria-label="Category"><button type="button" class="chip" data-act="cat" data-v="" aria-pressed="'+(!S.cat)+'">All</button>'
       +cats.map(function(c){ return '<button type="button" class="chip" data-act="cat" data-v="'+esc(c)+'" aria-pressed="'+(S.cat===c)+'"><span class="dot" style="background:'+catCol(c)+'"></span>'+esc(c)+'</button>'; }).join("")+'</div>';
     RIGHE=righeMese();
     var last="";
-    if(!RIGHE.length) h+='<p class="empty">'+(S.q||S.cat ? "Nessun movimento con questi filtri." : "Nessun movimento a "+MESI[m]+". Aggiungilo con il +.")+'</p>';
-    var recLink='<div class="recover"><span class="sub" style="margin:0">Ti sei perso qualche movimento?</span><button type="button" class="link" data-act="recupera">Recupera da estratto conto</button></div>';
+    if(!RIGHE.length) h+='<p class="empty">'+(S.q||S.cat ? "No transactions match these filters." : "No transactions in "+MESI[m]+". Add one with +.")+'</p>';
+    var recLink='<div class="recover"><span class="sub" style="margin:0">Missed some transactions?</span><button type="button" class="link" data-act="recupera">Recover from bank statement</button></div>';
     RIGHE.forEach(function(x,i){
       var e=x.e;
       if(x.d!==last){ h+='<div class="day">'+dayLabel(x.d)+'</div>'; last=x.d; }
-      var tag = S.scope==="tutto" ? (x.casa?'<span class="tag casa">Condivisa</span>':'<span class="tag mio">Mia</span>') : "";
-      if(e.rec) tag+='<span class="tag fix">ricorrente</span>';
-      if(e.tipo==="una") tag+='<span class="tag fix">una tantum</span>';
+      var tag = S.scope==="tutto" ? (x.casa?'<span class="tag casa">Shared</span>':'<span class="tag mio">Mine</span>') : "";
+      if(e.rec) tag+='<span class="tag fix">recurring</span>';
+      if(e.tipo==="una") tag+='<span class="tag fix">one-off</span>';
       var entrata = /^(in|inr|dep|depr)$/.test(x.k), title, sub, small="";
-      if(x.k==="bill"){ title=(BOLLETTE[e.type]||e.type)+(e.note?" · "+e.note:""); sub="Bollette · "+chiLab(chiOf(e))+(e.from&&e.to?" · "+e.from.slice(8,10)+"/"+e.from.slice(5,7)+"–"+e.to.slice(8,10)+"/"+e.to.slice(5,7):""); }
-      else if(x.k==="dep"||x.k==="depr"){ title=e.note||"Versamento sul conto comune"; sub=(e.cat==="Dotazione ricorrente"?"Quota mensile":"Versamento")+" sul conto comune"; }
-      else if(x.k==="giro"){ title=(e.da||"")+" → "+(e.a||""); sub="Giroconto tra i tuoi conti"+(e.note?" · "+e.note:""); }
+      if(x.k==="bill"){ title=(BOLLETTE[e.type]||e.type)+(e.note?" · "+e.note:""); sub="Bills · "+chiLab(chiOf(e))+(e.from&&e.to?" · "+e.from.slice(8,10)+"/"+e.from.slice(5,7)+"–"+e.to.slice(8,10)+"/"+e.to.slice(5,7):""); }
+      else if(x.k==="dep"||x.k==="depr"){ title=e.note||"Deposit to the joint account"; sub=(e.cat==="Monthly contribution"?"Monthly contribution":"Deposit")+" to the joint account"; }
+      else if(x.k==="giro"){ title=(e.da||"")+" → "+(e.a||""); sub="Transfer between your accounts"+(e.note?" · "+e.note:""); }
       else { title=e.note||x.cat; sub=x.cat+(x.casa?" · "+chiLab(chiOf(e)):"")+(e.conto?" · "+e.conto:""); }
-      if(x.casa && !entrata && S.scope!=="casa") small="<small>tua metà "+eur((e.amount||0)/2)+"</small>";
+      if(x.casa && !entrata && S.scope!=="casa") small="<small>your half "+eur((e.amount||0)/2)+"</small>";
       h+='<button type="button" class="tx" data-act="row" data-v="'+i+'"><span class="dot" style="background:'+(entrata?"var(--ok)":catCol(x.cat))+'"></span>'
         +'<span class="t">'+esc(title)+tag+'</span><span class="a'+(entrata?" in":"")+'">'+(entrata?"+":x.k==="giro"?"⇄ ":"")+eur(e.amount||0)+small+'</span><span class="s">'+esc(sub)+'</span></button>';
     });
@@ -698,7 +703,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   function closeSheet(){ $("scrim").hidden=true; QA=null; }
   $("scrim").addEventListener("click", function(e){ if(e.target===$("scrim")) closeSheet(); });
   document.addEventListener("keydown", function(e){ if(e.key==="Escape" && !$("scrim").hidden) closeSheet(); });
-  function hd(t){ return '<div class="sh-hd"><h2>'+esc(t)+'</h2><button type="button" class="x" data-act="close" aria-label="Chiudi">×</button></div>'; }
+  function hd(t){ return '<div class="sh-hd"><h2>'+esc(t)+'</h2><button type="button" class="x" data-act="close" aria-label="Close">×</button></div>'; }
   function primoGiorno(){ return isCurMonth() ? OGGI : monthKey(cur.y,cur.m)+"-01"; }
   function openAdd(pre){
     var mk=monthKey(cur.y,cur.m), last=new Date(cur.y,cur.m+1,0).getDate();
@@ -713,7 +718,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     return [mk+"-01", mk+"-"+String(new Date(y,m,0).getDate()).padStart(2,"0")]; }
   function openEdit(x){
     var e=x.e;
-    QA={mode:x.k==="giro"?"giro":/^(in|dep)$/.test(x.k)?"entrata":"spesa", conto:e.conto||"", da:e.da||"", a:e.a||"", scope:x.casa?"casa":"mio", amt:fmt(e.amount||0), cat:x.k==="bill"?"Bollette":x.k==="dep"?(e.cat||"Dotazione extra"):e.cat||"",
+    QA={mode:x.k==="giro"?"giro":/^(in|dep)$/.test(x.k)?"entrata":"spesa", conto:e.conto||"", da:e.da||"", a:e.a||"", scope:x.casa?"casa":"mio", amt:fmt(e.amount||0), cat:x.k==="bill"?"Bills":x.k==="dep"?(e.cat||"Extra deposit"):e.cat||"",
         chi:x.casa?chiOf(e):ME, bill:e.type||"luce", from:e.from||periodo(e)[0], to:e.to||periodo(e)[1], day:"altro", date:x.k==="bill"?billDate(e):(e.date||OGGI), note:e.note||"", rec:false, una:e.tipo==="una", row:x, del:false};
     renderQA();
   }
@@ -724,62 +729,62 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   // che cosa succede salvando, se una spesa già salvata cambia tra condivisa e tua
   function cambioQA(q){
     if(!q.row || q.mode!=="spesa" || q.row.casa===(q.scope==="casa")) return "";
-    var n=num(q.amt), h=n>0 ? eur(n/2) : "la metà";
-    if(q.scope==="casa") return "Diventa condivisa: la vede anche "+PARTNER+(q.chi==="conto" ? " ed esce dal conto comune." : " e metà, "+h+", "+(q.chi===ME ? "va nel conto di quanto ti deve." : "la devi tu "+aP(PARTNER)+"."));
-    if(aPartner(q)) return "Diventa una spesa di "+PARTNER+": esce dalle condivise, il conto tra voi cambia di "+h+" e "+PARTNER+" la trova tra le sue spese.";
-    return "Diventa solo tua: "+PARTNER+" non la vede più e "+(n>0?"i "+h:"la metà")+" "+(n>0?"escono":"esce")+" dal conto tra voi.";
+    var n=num(q.amt), h=n>0 ? eur(n/2) : "half";
+    if(q.scope==="casa") return "Becomes shared: "+PARTNER+" sees it too"+(q.chi==="conto" ? " and it is paid from the joint account." : " and half, "+h+", "+(q.chi===ME ? "is added to what "+PARTNER+" owes you." : "is added to what you owe "+PARTNER+"."));
+    if(aPartner(q)) return "Becomes "+PARTNER+"'s expense: it leaves the shared expenses, the balance between you changes by "+h+" and "+PARTNER+" finds it among their own expenses.";
+    return "Becomes yours only: "+PARTNER+" no longer sees it and "+h+" comes off the balance between you.";
   }
   function renderQA(){
-    var q=QA, ed=!!q.row, h=hd(ed?"Modifica":"Nuovo movimento");
+    var q=QA, ed=!!q.row, h=hd(ed?"Edit":"New transaction");
     if(!ed){
-      h+=seg("qa-mode", q.mode, [["spesa","Spesa"],["entrata","Entrata"]].concat(contiLab().length>=2?[["giro","Giroconto"]]:[]), "Tipo di movimento");
-      if(q.mode==="entrata") h+='<div style="margin-top:.6rem">'+seg("qa-scope", q.scope, [["mio","Mia"],["casa","Sul conto comune"]], "Di chi è")+'</div>';
-    }else if(q.mode==="spesa") h+='<p class="sub" style="margin:0">'+(q.row.casa ? "Spesa condivisa"+(q.row.e.by ? " · inserita da "+(q.row.e.by===ME?"te":esc(PARTNER)) : "") : "Spesa tua")+'</p>';
-    else h+='<p class="sub" style="margin:0">'+(q.mode==="giro"?"Giroconto tra i tuoi conti":"Entrata "+(q.scope==="casa"?"sul conto comune":"tua"))+'</p>';
-    h+='<label class="amt" for="qa-amt"><span>€</span><input id="qa-amt" type="text" inputmode="decimal" placeholder="0,00" value="'+esc(q.amt)+'" autocomplete="off"></label>';
+      h+=seg("qa-mode", q.mode, [["spesa","Expense"],["entrata","Income"]].concat(contiLab().length>=2?[["giro","Transfer"]]:[]), "Transaction type");
+      if(q.mode==="entrata") h+='<div style="margin-top:.6rem">'+seg("qa-scope", q.scope, [["mio","Mine"],["casa","To the joint account"]], "Whose")+'</div>';
+    }else if(q.mode==="spesa") h+='<p class="sub" style="margin:0">'+(q.row.casa ? "Shared expense"+(q.row.e.by ? " · added by "+(q.row.e.by===ME?"you":esc(PARTNER)) : "") : "Your expense")+'</p>';
+    else h+='<p class="sub" style="margin:0">'+(q.mode==="giro"?"Transfer between your accounts":(q.scope==="casa"?"Deposit to the joint account":"Your income"))+'</p>';
+    h+='<label class="amt" for="qa-amt"><span>€</span><input id="qa-amt" type="text" inputmode="decimal" placeholder="0.00" value="'+esc(q.amt)+'" autocomplete="off"></label>';
     if(q.mode==="giro"){
-      h+='<p class="lab">Da</p>'+chips("qa-da", q.da, contiLab())+'<p class="lab">A</p>'+chips("qa-a", q.a, contiLab());
+      h+='<p class="lab">From</p>'+chips("qa-da", q.da, contiLab())+'<p class="lab">To</p>'+chips("qa-a", q.a, contiLab());
     }else if(q.mode==="spesa"){
       var cond=q.scope==="casa", lk=bloccata(q);
       h+='<label class="share'+(cond?" on":"")+(lk?" off":"")+'"><input type="checkbox" id="qa-share"'+(cond?" checked":"")+(lk?" disabled":"")+'>'
-        +'<span><b>'+(PK ? 'Condivisa con '+esc(PARTNER) : 'Condivisa')+'</b><small>'+(lk ? "Pagata dal conto comune: resta condivisa. Per toglierla, cambia prima chi ha pagato" : "Si divide a metà")+'</small></span></label>';
-      if(cond) h+='<p class="lab">Chi ha pagato</p>'+chips("qa-chi", q.chi, [[ME,"Io"]].concat(PK?[[PK,PARTNER]]:[]).concat([["conto","Conto comune"]]));
+        +'<span><b>'+(PK ? 'Shared with '+esc(PARTNER) : 'Shared')+'</b><small>'+(lk ? "Paid from the joint account, so it stays shared. To change it, first change who paid" : "Split in half")+'</small></span></label>';
+      if(cond) h+='<p class="lab">Who paid</p>'+chips("qa-chi", q.chi, [[ME,"Me"]].concat(PK?[[PK,PARTNER]]:[]).concat([["conto","Joint account"]]));
       var cg=cambioQA(q); if(cg) h+='<p class="chg" id="qa-chg">'+esc(cg)+'</p>';
       var cats=catsTutte(); if(q.cat && cats.indexOf(q.cat)<0) cats=cats.concat([q.cat]);
-      h+='<p class="lab">Categoria</p>'+chips("qa-cat", q.cat, cats.map(function(c){return [c,c,catCol(c)];}));
-      if(cond && q.cat==="Bollette"){
-        h+='<p class="lab">Fornitura</p>'+chips("qa-bill", q.bill, Object.keys(BOLLETTE).map(function(k){return [k,BOLLETTE[k]];}));
-        h+='<div class="pair"><div><label for="qa-from">Periodo dal</label><input id="qa-from" type="date" value="'+q.from+'"></div><div><label for="qa-to">al</label><input id="qa-to" type="date" value="'+q.to+'"></div></div>'
-          +'<p class="note">Il periodo è quello di competenza: una bolletta di due mesi si divide da sola nel budget.</p>';
+      h+='<p class="lab">Category</p>'+chips("qa-cat", q.cat, cats.map(function(c){return [c,c,catCol(c)];}));
+      if(cond && q.cat==="Bills"){
+        h+='<p class="lab">Utility</p>'+chips("qa-bill", q.bill, Object.keys(BOLLETTE).map(function(k){return [k,BOLLETTE[k]];}));
+        h+='<div class="pair"><div><label for="qa-from">Period from</label><input id="qa-from" type="date" value="'+q.from+'"></div><div><label for="qa-to">to</label><input id="qa-to" type="date" value="'+q.to+'"></div></div>'
+          +'<p class="note">The period the bill covers: a two-month bill is spread over both months in the budget.</p>';
       }
     }else if(q.scope==="mio"){
-      h+='<p class="lab">Che cosa</p>'+chips("qa-cat", q.cat, CAT_INC);
+      h+='<p class="lab">What</p>'+chips("qa-cat", q.cat, CAT_INC);
     }else{
-      h+='<p class="lab">Che cosa</p>'+chips("qa-cat", q.cat, (ed?[]:[["Dotazione ricorrente","Quota ogni mese"]]).concat([["Dotazione extra","Versamento"]]));
+      h+='<p class="lab">What</p>'+chips("qa-cat", q.cat, (ed?[]:[["Monthly contribution","Every month"]]).concat([["Extra deposit","One-off deposit"]]));
     }
-    if(serveConto(q)) h+='<p class="lab">'+(q.mode==="entrata"&&q.scope==="mio"?"Su quale conto":"Da quale tuo conto")+' · il patrimonio si aggiorna da solo</p>'+chips("qa-conto", q.conto, contiLab().concat([["","Altro"]]));
-    var bolletta = q.mode==="spesa" && q.scope==="casa" && q.cat==="Bollette";
-    var ricorrente = !ed && (q.rec || (q.mode==="entrata" && q.scope==="casa" && q.cat==="Dotazione ricorrente"));
+    if(serveConto(q)) h+='<p class="lab">'+(q.mode==="entrata"&&q.scope==="mio"?"Into which account":"From which of your accounts")+' · net worth updates itself</p>'+chips("qa-conto", q.conto, contiLab().concat([["","Other"]]));
+    var bolletta = q.mode==="spesa" && q.scope==="casa" && q.cat==="Bills";
+    var ricorrente = !ed && (q.rec || (q.mode==="entrata" && q.scope==="casa" && q.cat==="Monthly contribution"));
     if(bolletta){
-      h+='<p class="lab">Quando l\'hai pagata</p>'+chips("qa-day", q.day, [["oggi","Oggi"],["ieri","Ieri"],["altro","Altro giorno"]]);
-      if(q.day==="altro") h+='<input class="field" id="qa-date" type="date" value="'+q.date+'" style="margin-top:.5rem" aria-label="Data del pagamento">';
+      h+='<p class="lab">When you paid it</p>'+chips("qa-day", q.day, [["oggi","Today"],["ieri","Yesterday"],["altro","Another day"]]);
+      if(q.day==="altro") h+='<input class="field" id="qa-date" type="date" value="'+q.date+'" style="margin-top:.5rem" aria-label="Payment date">';
     }else{
-      if(ricorrente) h+='<label for="qa-date">Dal giorno (si ripete ogni mese)</label><input id="qa-date" type="date" value="'+q.date+'">';
+      if(ricorrente) h+='<label for="qa-date">Starting on (repeats every month)</label><input id="qa-date" type="date" value="'+q.date+'">';
       else{
-        h+='<p class="lab">Quando</p>'+chips("qa-day", q.day, [["oggi","Oggi"],["ieri","Ieri"],["altro","Altro giorno"]]);
-        if(q.day==="altro") h+='<input class="field" id="qa-date" type="date" value="'+q.date+'" style="margin-top:.5rem" aria-label="Data">';
+        h+='<p class="lab">When</p>'+chips("qa-day", q.day, [["oggi","Today"],["ieri","Yesterday"],["altro","Another day"]]);
+        if(q.day==="altro") h+='<input class="field" id="qa-date" type="date" value="'+q.date+'" style="margin-top:.5rem" aria-label="Date">';
       }
     }
-    h+='<p class="lab">Nota</p><input class="field" id="qa-note" type="text" placeholder="facoltativa, per esempio Esselunga" value="'+esc(q.note)+'">';
+    h+='<p class="lab">Note</p><input class="field" id="qa-note" type="text" placeholder="optional, for example the shop name" value="'+esc(q.note)+'">';
     var opzRec = !ed, opzUna = q.mode==="spesa" && q.scope==="casa";
     if(!bolletta && q.mode!=="giro" && !(q.mode==="entrata" && q.scope==="casa") && (opzRec || opzUna)){
-      h+='<details class="more"'+(q.rec||q.una?" open":"")+'><summary>Altre opzioni</summary>';
-      if(opzRec) h+='<label class="chk"><input type="checkbox" id="qa-rec"'+(q.rec?" checked":"")+'> Si ripete ogni mese</label>';
-      if(opzUna) h+='<label class="chk"><input type="checkbox" id="qa-una"'+(q.una?" checked":"")+'> Una tantum, fuori dal budget del mese</label>';
+      h+='<details class="more"'+(q.rec||q.una?" open":"")+'><summary>More options</summary>';
+      if(opzRec) h+='<label class="chk"><input type="checkbox" id="qa-rec"'+(q.rec?" checked":"")+'> Repeats every month</label>';
+      if(opzUna) h+='<label class="chk"><input type="checkbox" id="qa-una"'+(q.una?" checked":"")+'> One-off, outside the monthly budget</label>';
       h+='</details>';
     }
     h+='<div style="display:flex;gap:.5rem;margin-top:1.1rem">';
-    if(ed) h+='<button type="button" class="btn '+(q.del?"danger":"ghost")+'" data-act="qa-del">'+(q.del?"Tocca di nuovo per eliminare":"Elimina")+'</button>';
+    if(ed) h+='<button type="button" class="btn '+(q.del?"danger":"ghost")+'" data-act="qa-del">'+(q.del?"Tap again to delete":"Delete")+'</button>';
     h+='<button type="button" class="btn full" id="qa-save" data-act="qa-save">'+saveLab()+'</button></div>';
     if(q.mode==="spesa" && q.scope==="casa") h+='<p class="note" id="qa-hint">'+hintCasa()+'</p>';
     openSheet(h);
@@ -790,21 +795,21 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var rc=$("qa-rec"); if(rc) rc.onchange=function(){ q.rec=rc.checked; if(q.rec) q.day="altro"; renderQA(); };
     var un=$("qa-una"); if(un) un.onchange=function(){ q.una=un.checked; };
   }
-  function serveConto(q){ return contiLab().length>0 && ((q.mode==="spesa" && (q.scope==="mio" ? !aPartner(q) : q.chi===ME)) || (q.mode==="entrata" && (q.scope==="mio" || q.cat==="Dotazione extra"))); }
-  function saveLab(){ var n=num(QA.amt); return (QA.row?"Salva":"Registra")+(n>0?" "+eur(n):""); }
+  function serveConto(q){ return contiLab().length>0 && ((q.mode==="spesa" && (q.scope==="mio" ? !aPartner(q) : q.chi===ME)) || (q.mode==="entrata" && (q.scope==="mio" || q.cat==="Extra deposit"))); }
+  function saveLab(){ var n=num(QA.amt); return (QA.row?"Save":"Add")+(n>0?" "+eur(n):""); }
   function hintCasa(){
-    var n=num(QA.amt); if(!(n>0)) return "Si divide a metà: chi ha pagato ha diritto alla metà dall'altro.";
-    return QA.chi==="conto" ? "Esce dal conto comune: nessun debito tra voi." : QA.chi===ME ? "Metà, "+eur(n/2)+", va nel conto di quanto ti deve "+PARTNER+"." : "Metà, "+eur(n/2)+", la devi "+aP(PARTNER)+".";
+    var n=num(QA.amt); if(!(n>0)) return "Split in half: whoever paid gets half back from the other.";
+    return QA.chi==="conto" ? "Paid from the joint account: no debt between you." : QA.chi===ME ? "Half, "+eur(n/2)+", is added to what "+PARTNER+" owes you." : "Half, "+eur(n/2)+", is added to what you owe "+PARTNER+".";
   }
   function salvaQA(){
     var q=QA, n=num(q.amt), U="data/users/"+uid+"/";
-    if(!(n>0)){ toast("Scrivi l'importo"); $("qa-amt").focus(); return; }
-    if(q.mode!=="giro" && !q.cat){ toast("Scegli "+(q.mode==="spesa"?"una categoria":"che cosa è")); return; }
-    if(q.mode==="giro" && (!q.da || !q.a || q.da===q.a)){ toast("Scegli due conti diversi"); return; }
+    if(!(n>0)){ toast("Enter the amount"); $("qa-amt").focus(); return; }
+    if(q.mode!=="giro" && !q.cat){ toast("Choose "+(q.mode==="spesa"?"a category":"what it is")); return; }
+    if(q.mode==="giro" && (!q.da || !q.a || q.da===q.a)){ toast("Choose two different accounts"); return; }
     var spesa = q.mode==="spesa", cond = q.scope==="casa", verso = aPartner(q);
-    var bolletta = spesa && cond && q.cat==="Bollette";
+    var bolletta = spesa && cond && q.cat==="Bills";
     var d = q.day==="oggi" ? OGGI : q.day==="ieri" ? new Date(now.getTime()-86400000).toISOString().slice(0,10) : (q.date||OGGI);
-    var rule = !q.row && q.mode!=="giro" && !bolletta && (q.rec || (q.mode==="entrata" && cond && q.cat==="Dotazione ricorrente"));
+    var rule = !q.row && q.mode!=="giro" && !bolletta && (q.rec || (q.mode==="entrata" && cond && q.cat==="Monthly contribution"));
     // la raccolta dove va la riga. Se in una modifica è diversa da quella di prima
     // (condivisa ↔ tua, spesa ↔ bolletta, condivisa → di PARTNER) la riga si sposta e tiene lo stesso codice.
     var coll = q.mode==="giro" ? U+"giroconti" : bolletta ? "shared/bills"
@@ -824,8 +829,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     if(q.mode==="giro"){
       rec.da=q.da; rec.a=q.a; rec.date=d; rec.month=d.slice(0,7);
     }else if(bolletta){
-      if(!q.from || !q.to){ toast("Indica il periodo"); return; }
-      if(q.to<q.from){ toast("Il periodo finisce prima di iniziare"); return; }
+      if(!q.from || !q.to){ toast("Enter the period"); return; }
+      if(q.to<q.from){ toast("The period ends before it starts"); return; }
       rec.type=q.bill; rec.chi=q.chi; rec.by=rec.by||ME; rec.from=q.from; rec.to=q.to; rec.month=q.from.slice(0,7); rec.date=d;
     }else{
       if(rule){ rec={amount:n, cat:q.cat, note:nota, day:parseInt(d.slice(8,10),10)||1, from:d.slice(0,7), ts:Date.now()}; }
@@ -841,55 +846,55 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     if(sposta) p=db.doc(coll+"/"+q.row.e._id).set(rec).then(function(){ copiata=true; return db.doc(path).delete(); });
     else p = path ? db.doc(path).set(rec) : db.collection(coll).add(rec);
     var altroMese = !path && rec.month && rec.month!==monthKey(cur.y,cur.m);
-    var msg = path ? (!sposta || q.row.casa===cond ? "Modifica salvata" : cond ? "Spostata tra le condivise" : verso ? "Passata tra le spese di "+PARTNER : "Spostata tra le tue spese")
-      : q.mode==="giro" ? "Giroconto registrato" : (rec.day ? "Ricorrenza impostata" : (q.mode==="entrata"?"Entrata registrata":"Registrata"+(cond&&spesa?" come condivisa":"")));
+    var msg = path ? (!sposta || q.row.casa===cond ? "Changes saved" : cond ? "Moved to shared expenses" : verso ? "Moved to "+PARTNER+"'s expenses" : "Moved to your expenses")
+      : q.mode==="giro" ? "Transfer added" : (rec.day ? "Recurring item set" : (q.mode==="entrata"?"Income added":"Added"+(cond&&spesa?" as shared":"")));
     p.then(function(){
       closeSheet();
       toast(msg+(altroMese ? " in "+MESI[+rec.month.slice(5,7)-1]+" "+rec.month.slice(0,4) : ""));
     }).catch(function(e){
-      console.warn("Salvataggio non riuscito", e);
-      if(copiata){ closeSheet(); toast("Spostata, ma la riga vecchia è rimasta: eliminala"); return; }
-      toast("Non è stato possibile salvare"); var b=$("qa-save"); if(b) b.disabled=false;
+      console.warn("Save failed", e);
+      if(copiata){ closeSheet(); toast("Moved, but the old row is still there: delete it"); return; }
+      toast("Could not save"); var b=$("qa-save"); if(b) b.disabled=false;
     });
   }
   function eliminaQA(){
     if(!QA.del){ QA.del=true; renderQA(); return; }
-    db.doc(QA.row.path).delete().then(function(){ closeSheet(); toast("Movimento eliminato"); }).catch(function(){ toast("Non eliminato"); });
+    db.doc(QA.row.path).delete().then(function(){ closeSheet(); toast("Transaction deleted"); }).catch(function(){ toast("Not deleted"); });
   }
   // una riga che viene da una voce ricorrente: si termina o si elimina la voce
   function openRule(x){
     var coll=x.coll, id=x.e._rule, list = coll==="shared/recurring"?recCom : coll==="shared/depositsRec"?depRec : /incomeRec$/.test(coll)?recInc : recPer;
     var r=list.filter(function(z){return z._id===id;})[0]; if(!r) return;
-    var h=hd("Voce ricorrente");
-    h+='<p class="big">'+eur(r.amount)+'</p><p class="sub">'+esc((r.cat||"")+(r.note?" · "+r.note:""))+'<br>Ogni mese il '+(r.day||1)+', dal '+esc(r.from||"")+(r.until?", terminata a "+esc(r.until):"")+'.</p>';
-    h+='<p class="note">Per cambiare l\'importo, termina questa voce e creane una nuova dal +.</p>';
+    var h=hd("Recurring item");
+    h+='<p class="big">'+eur(r.amount)+'</p><p class="sub">'+esc((r.cat||"")+(r.note?" · "+r.note:""))+'<br>Every month on day '+(r.day||1)+', from '+esc(r.from||"")+(r.until?", ended in "+esc(r.until):"")+'.</p>';
+    h+='<p class="note">To change the amount, end this item and create a new one with +.</p>';
     h+='<div style="display:flex;gap:.5rem;margin-top:1rem">'
-      +(r.until?'':'<button type="button" class="btn ghost" data-act="rule-stop" data-v="'+esc(coll+"/"+id)+'">Termina da questo mese</button>')
-      +'<button type="button" class="btn danger" data-act="rule-del" data-v="'+esc(coll+"/"+id)+'">Elimina la voce</button></div>';
+      +(r.until?'':'<button type="button" class="btn ghost" data-act="rule-stop" data-v="'+esc(coll+"/"+id)+'">End from this month</button>')
+      +'<button type="button" class="btn danger" data-act="rule-del" data-v="'+esc(coll+"/"+id)+'">Delete the item</button></div>';
     openSheet(h);
   }
 
   /* ---------- conto tra voi ---------- */
   function renderDeb(){
     var c=contoPartner(), d=c.bal, o=PARTNER;
-    var h=hd("Conto con "+o);
+    var h=hd("Balance with "+o);
     h+='<p class="big '+(d>0?"good":d<0?"over":"")+'">'+eur(Math.abs(d))+'</p><p class="sub">'
-      +(d>0 ? o+" ti deve questa cifra. " : d<0 ? "La devi "+aP(o)+". " : "Siete pari. ")
-      +"È la metà delle spese condivise pagate da uno dei due, meno i rimborsi."
-      +(c.ultimo ? " Ultimo rimborso: "+parseInt(c.ultimo.slice(8,10),10)+" "+MESIB[parseInt(c.ultimo.slice(5,7),10)-1]+"." : "")+'</p>';
+      +(d>0 ? o+" owes you this amount. " : d<0 ? "You owe this to "+o+". " : "You are even. ")
+      +"It is half of the shared expenses paid by one of you, minus repayments."
+      +(c.ultimo ? " Last repayment: "+parseInt(c.ultimo.slice(8,10),10)+" "+MESIB[parseInt(c.ultimo.slice(5,7),10)-1]+"." : "")+'</p>';
     if(d){
-      h+='<label for="deb-amt">'+(d>0?"Quanto ti ha restituito "+o+"?":"Quanto hai restituito "+aP(o)+"?")+' Per azzerare lascia la cifra intera.</label>'
+      h+='<label for="deb-amt">'+(d>0?"How much did "+o+" pay you back?":"How much did you pay "+o+" back?")+' To settle up, leave the full amount.</label>'
         +'<input class="field" id="deb-amt" type="text" inputmode="decimal" value="'+fmt(Math.abs(d))+'">'
-        +'<button type="button" class="btn full" data-act="deb-save" style="margin-top:1rem">Segna il rimborso</button>';
+        +'<button type="button" class="btn full" data-act="deb-save" style="margin-top:1rem">Record the repayment</button>';
     }
     openSheet(h);
   }
   function salvaDeb(){
     var d=contoPartner().bal, a=num($("deb-amt").value);
-    if(!(a>0)){ toast("Importo non valido"); return; }
+    if(!(a>0)){ toast("Invalid amount"); return; }
     db.collection("shared/conguagli").add({amount:a, dir:"rimborso", da: d>0?PK:ME, a: d>0?ME:PK, by:ME, date:OGGI, ts:Date.now()})
-      .then(function(){ closeSheet(); toast(Math.abs(a-Math.abs(d))<0.01 ? "Segnato: siete pari" : "Rimborso registrato"); })
-      .catch(function(){ toast("Non è stato possibile salvare"); });
+      .then(function(){ closeSheet(); toast(Math.abs(a-Math.abs(d))<0.01 ? "Recorded: you are even" : "Repayment recorded"); })
+      .catch(function(){ toast("Could not save"); });
   }
 
   /* ---------- Budget: una pagina, prima quello insieme, poi il tuo ---------- */
@@ -900,75 +905,75 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     return out;
   }
   function righeRicorrenti(list, coll, entrata){
-    if(!list.length) return '<p class="empty">Nessuna voce ricorrente.</p>';
+    if(!list.length) return '<p class="empty">No recurring items.</p>';
     return list.slice().sort(function(a,b){return (a.day||1)-(b.day||1);}).map(function(r){
-      return '<div class="bud"><span class="n">'+esc((r.cat||"")+(r.note?" · "+r.note:""))+'<span class="sub" style="display:block">ogni mese il '+(r.day||1)+(r.until?", terminata a "+esc(r.until):", dal "+esc(r.from||""))+(r.chi?" · "+chiLab(r.chi):"")+'</span></span>'
-        +'<span class="v">'+(entrata?"+":"")+eur(r.amount)+(r.until?'':' <button type="button" class="x" title="Termina" aria-label="Termina" data-act="rule-stop" data-v="'+esc(coll+"/"+r._id)+'">■</button>')
-        +'<button type="button" class="x" title="Elimina" aria-label="Elimina" data-act="rule-del" data-v="'+esc(coll+"/"+r._id)+'">×</button></span></div>';
+      return '<div class="bud"><span class="n">'+esc((r.cat||"")+(r.note?" · "+r.note:""))+'<span class="sub" style="display:block">every month on day '+(r.day||1)+(r.until?", ended in "+esc(r.until):", from "+esc(r.from||""))+(r.chi?" · "+chiLab(r.chi):"")+'</span></span>'
+        +'<span class="v">'+(entrata?"+":"")+eur(r.amount)+(r.until?'':' <button type="button" class="x" title="End" aria-label="End" data-act="rule-stop" data-v="'+esc(coll+"/"+r._id)+'">■</button>')
+        +'<button type="button" class="x" title="Delete" aria-label="Delete" data-act="rule-del" data-v="'+esc(coll+"/"+r._id)+'">×</button></span></div>';
     }).join("");
   }
   function renderBud(){
     var a=S.budView==="a", mesi=mesiPeriodo(), nM=mesi.length;
-    var h='<div class="row-ctl" style="justify-content:flex-end">'+seg("budView", S.budView, [["m","Mese"],["a","Anno"]], "Periodo", "sm")+'</div>';
+    var h='<div class="row-ctl" style="justify-content:flex-end">'+seg("budView", S.budView, [["m","Month"],["a","Year"]], "Period", "sm")+'</div>';
     // ---- Insieme
-    h+='<h2 class="part">Insieme</h2>';
+    h+='<h2 class="part">Together</h2>';
     var sc=saldoConto(), sal=sc.saldo;
-    h+='<div class="card"><p class="k">Saldo del conto comune</p><p class="big '+(sal<SOGLIA?"over":"")+'">'+eur(sal)+'</p>'
-      +'<p class="sub">'+(sal<SOGLIA ? "Sotto la soglia di "+SOGLIA+": conviene fermare le uscite non necessarie fino ai prossimi versamenti." : "Soglia da non superare verso il basso: "+SOGLIA+". Margine: "+eur0(sal-SOGLIA)+".")+'</p>'
-      +'<p class="note">'+(sc.acc.n ? "Quota mensile di "+eur0(sc.acc.mese)+", contata per "+sc.acc.n+(sc.acc.n===1?" mese.":" mesi.") : "Nessuna quota mensile impostata: registratela dal +, come entrata sul conto comune.")+'</p></div>';
+    h+='<div class="card"><p class="k">Joint account balance</p><p class="big '+(sal<SOGLIA?"over":"")+'">'+eur(sal)+'</p>'
+      +'<p class="sub">'+(sal<SOGLIA ? "Below the "+SOGLIA+" floor: better to stop non-essential spending until the next deposits." : "Floor not to go below: "+SOGLIA+". Margin: "+eur0(sal-SOGLIA)+".")+'</p>'
+      +'<p class="note">'+(sc.acc.n ? "Monthly contributions of "+eur0(sc.acc.mese)+", counted for "+sc.acc.n+(sc.acc.n===1?" month.":" months.") : "No monthly contribution set: add it with +, as income to the joint account.")+'</p></div>';
     var spCat={}, una=0;
     mesi.forEach(function(p){ var cb=condBudgetMese(p[0],p[1]); una+=cb.una; for(var k in cb.cats) spCat[k]=(spCat[k]||0)+cb.cats[k]; });
     var spTot=sum(Object.keys(spCat).map(function(k){return spCat[k];})), bT=budCondTot()*nM;
-    h+='<div class="card"><p class="k">Spese condivise '+(a?"del "+cur.y+(cur.y===now.getFullYear()?", fino a oggi":""):"di "+MESI[cur.m])+'</p>'
-      +'<p class="big">'+eur0(spTot)+(bT?' <small>di '+eur0(bT)+'</small>':'')+'</p>'+(bT?bar(spTot,bT):'')
-      +'<p class="sub">'+(!bT ? "Il budget insieme non è ancora impostato." : a ? (spTot>bT?"Sopra il budget di "+eur0(spTot-bT)+".":"Sotto il budget di "+eur0(bT-spTot)+".")
-        : isCurMonth() ? "Restano "+eur0(bT-spTot)+" per "+giorniRestanti()+" giorni." : (spTot>bT?"Sopra il budget di "+eur0(spTot-bT)+".":"Sotto il budget di "+eur0(bT-spTot)+"."))+'</p>'
-      +(una?'<p class="note">Più '+eur(una)+' di spese una tantum, fuori dal budget.</p>':'')
-      +'<p class="note">Lo decidete insieme: le modifiche le vede anche '+PARTNER+'.'
-      +(CASA.budget && CASA.budget.by ? ' Ultima modifica di '+(CASA.budget.by===ME?"te":PARTNER)+(CASA.budget.at?", "+esc(CASA.budget.at):"")+'.' : '')+'</p></div>';
-    h+='<div class="card"><div class="row-ctl" style="margin:0 0 .3rem"><h2>Per categoria</h2>'
-      +(S.edit?'<button type="button" class="btn sm" data-act="saveBud">Salva budget</button>':'<button type="button" class="btn sm ghost" data-act="editBud">'+(budCondTot()?"Modifica budget":"Imposta il budget")+'</button>')+'</div>';
-    if(S.edit) h+='<p class="note" style="margin-top:0">Budget di ogni mese, per categoria. Le bollette si contano per periodo di competenza.</p>';
+    h+='<div class="card"><p class="k">Shared spending '+(a?"in "+cur.y+(cur.y===now.getFullYear()?", to date":""):"in "+MESI[cur.m])+'</p>'
+      +'<p class="big">'+eur0(spTot)+(bT?' <small>of '+eur0(bT)+'</small>':'')+'</p>'+(bT?bar(spTot,bT):'')
+      +'<p class="sub">'+(!bT ? "The shared budget is not set yet." : a ? (spTot>bT?"Over budget by "+eur0(spTot-bT)+".":"Under budget by "+eur0(bT-spTot)+".")
+        : isCurMonth() ? "Left: "+eur0(bT-spTot)+" for "+giorniRestanti()+" days." : (spTot>bT?"Over budget by "+eur0(spTot-bT)+".":"Under budget by "+eur0(bT-spTot)+"."))+'</p>'
+      +(una?'<p class="note">Plus '+eur(una)+' of one-off expenses, outside the budget.</p>':'')
+      +'<p class="note">You decide it together: '+PARTNER+' sees the changes too.'
+      +(CASA.budget && CASA.budget.by ? ' Last changed by '+(CASA.budget.by===ME?"you":PARTNER)+(CASA.budget.at?", "+esc(CASA.budget.at):"")+'.' : '')+'</p></div>';
+    h+='<div class="card"><div class="row-ctl" style="margin:0 0 .3rem"><h2>By category</h2>'
+      +(S.edit?'<button type="button" class="btn sm" data-act="saveBud">Save budget</button>':'<button type="button" class="btn sm ghost" data-act="editBud">'+(budCondTot()?"Edit budget":"Set the budget")+'</button>')+'</div>';
+    if(S.edit) h+='<p class="note" style="margin-top:0">Monthly budget by category. Bills count in the period they cover.</p>';
     CAT_COND.forEach(function(c){
       var bb=budCond(c)*nM, sp=spCat[c]||0;
       h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(c)+'"></span> '+esc(c)+'</span>'
-        +(S.edit ? '<input type="number" inputmode="decimal" min="0" step="1" data-budc="'+esc(c)+'" value="'+(budCond(c)||"")+'" placeholder="0" aria-label="Budget mensile '+esc(c)+'">'
-          : '<span class="v">'+eur0(sp)+(bb?' / '+eur0(bb):' · senza budget')+'</span>')
+        +(S.edit ? '<input type="number" inputmode="decimal" min="0" step="1" data-budc="'+esc(c)+'" value="'+(budCond(c)||"")+'" placeholder="0" aria-label="Monthly budget '+esc(c)+'">'
+          : '<span class="v">'+eur0(sp)+(bb?' / '+eur0(bb):' · no budget')+'</span>')
         +(bb?bar(sp,bb):'')+'</div>';
     });
     h+='</div>';
-    h+='<details class="card"><summary><b>Voci ricorrenti condivise</b> · '+recCom.length+'</summary>'+righeRicorrenti(recCom,"shared/recurring")+'</details>';
-    h+='<details class="card"><summary><b>Entrate sul conto comune</b></summary>'+righeRicorrenti(depRec,"shared/depositsRec",true)
-      +'<p class="note">I versamenti extra sono tra i movimenti del mese, in Condivise.</p></details>';
+    h+='<details class="card"><summary><b>Shared recurring items</b> · '+recCom.length+'</summary>'+righeRicorrenti(recCom,"shared/recurring")+'</details>';
+    h+='<details class="card"><summary><b>Deposits to the joint account</b></summary>'+righeRicorrenti(depRec,"shared/depositsRec",true)
+      +'<p class="note">One-off deposits are in the month\'s transactions, under Shared.</p></details>';
     // ---- Il tuo
-    h+='<h2 class="part">Il tuo</h2><p class="priv">🔒 Lo vedi solo tu</p>';
+    h+='<h2 class="part">Yours</h2><p class="priv">🔒 Only you can see this</p>';
     var fis=sum(FISSE.map(function(f){return f.b;})), libero=liberoMese(), bm=budMioTot();
     if(!pos(SET.entrate) && !bm){
-      h+='<div class="card"><p>Il tuo piano non è ancora impostato.</p><button type="button" class="btn" data-act="settings">Imposta il tuo piano</button></div>';
+      h+='<div class="card"><p>Your plan is not set yet.</p><button type="button" class="btn" data-act="settings">Set your plan</button></div>';
     }else{
-      h+='<div class="card"><div class="row-ctl" style="margin:0 0 .3rem"><h2>Il tuo piano '+(a?"dell'anno":"del mese")+'</h2><button type="button" class="btn sm ghost" data-act="settings">Modifica</button></div><table class="plan"><tbody>'
-        +'<tr><td>Entrate</td><td>'+eur0(pos(SET.entrate)*nM+(a?(nM>5?pos(SET.q14):0)+(nM>11?pos(SET.q13):0):0))+'</td></tr>'
-        +(FISSE.length?'<tr class="sec"><td colspan="2">Fisse</td></tr>'+FISSE.map(function(f){return '<tr><td>'+esc(f.n)+'</td><td>−'+eur0(f.b*nM)+'</td></tr>';}).join(""):'')
-        +'<tr class="sec"><td colspan="2">Da mettere da parte</td></tr><tr><td>Al risparmio</td><td>−'+eur0(pos(SET.risparmio)*nM)+'</td></tr>'
-        +'<tr class="tot"><td>Da spendere come vuoi</td><td>'+eur0(libero*nM)+'</td></tr></tbody></table>'
-        +(Math.abs(libero-bm)>=1 ? '<p class="note">'+(bm<libero?"Hai diviso tra le categorie "+eur0(bm)+": restano "+eur0(libero-bm)+" senza categoria.":"Le categorie sommano "+eur0(bm)+", più di quello che resta da spendere.")+'</p>' : '')+'</div>';
+      h+='<div class="card"><div class="row-ctl" style="margin:0 0 .3rem"><h2>Your plan for the '+(a?"year":"month")+'</h2><button type="button" class="btn sm ghost" data-act="settings">Edit</button></div><table class="plan"><tbody>'
+        +'<tr><td>Income</td><td>'+eur0(pos(SET.entrate)*nM+(a?(nM>5?pos(SET.q14):0)+(nM>11?pos(SET.q13):0):0))+'</td></tr>'
+        +(FISSE.length?'<tr class="sec"><td colspan="2">Fixed costs</td></tr>'+FISSE.map(function(f){return '<tr><td>'+esc(f.n)+'</td><td>−'+eur0(f.b*nM)+'</td></tr>';}).join(""):'')
+        +'<tr class="sec"><td colspan="2">To set aside</td></tr><tr><td>Savings</td><td>−'+eur0(pos(SET.risparmio)*nM)+'</td></tr>'
+        +'<tr class="tot"><td>Free to spend</td><td>'+eur0(libero*nM)+'</td></tr></tbody></table>'
+        +(Math.abs(libero-bm)>=1 ? '<p class="note">'+(bm<libero?"You assigned "+eur0(bm)+" to categories: "+eur0(libero-bm)+" is left without a category.":"Your categories add up to "+eur0(bm)+", more than what is left to spend.")+'</p>' : '')+'</div>';
       var spMio={}; mesi.forEach(function(p){ var o=mieMese(p[0],p[1]); for(var k in o) spMio[k]=(spMio[k]||0)+o[k]; });
       var tm=sum(CAT_PER.map(function(c){return spMio[c.n]||0;})), bmT=bm*nM;
-      h+='<div class="card"><p class="k">Speso '+(a?"nel "+cur.y:"a "+MESI[cur.m])+', categorie con budget</p><p class="big">'+eur0(tm)+(bmT?' <small>di '+eur0(bmT)+'</small>':'')+'</p>'+(bmT?bar(tm,bmT):'')
-        +(bmT?'<p class="sub">'+(tm>bmT?"Sopra il budget di "+eur0(tm-bmT)+".":(!a&&isCurMonth()?"Restano "+eur0(bmT-tm)+" per "+giorniRestanti()+" giorni.":"Sotto il budget di "+eur0(bmT-tm)+"."))+'</p>':'')+'</div>';
-      h+='<div class="card"><h2>Per categoria</h2>';
+      h+='<div class="card"><p class="k">Spent '+(a?"in "+cur.y:"in "+MESI[cur.m])+', categories with a budget</p><p class="big">'+eur0(tm)+(bmT?' <small>of '+eur0(bmT)+'</small>':'')+'</p>'+(bmT?bar(tm,bmT):'')
+        +(bmT?'<p class="sub">'+(tm>bmT?"Over budget by "+eur0(tm-bmT)+".":(!a&&isCurMonth()?"Left: "+eur0(bmT-tm)+" for "+giorniRestanti()+" days.":"Under budget by "+eur0(bmT-tm)+"."))+'</p>':'')+'</div>';
+      h+='<div class="card"><h2>By category</h2>';
       CAT_PER.forEach(function(c){ var bb=c.b*nM, sp=spMio[c.n]||0;
-        h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(c.n)+'"></span> '+esc(c.n)+'</span><span class="v">'+eur0(sp)+(bb?' / '+eur0(bb):' · budget da impostare')+'</span>'+(bb?bar(sp,bb):'')+'</div>'; });
-      CAT_TRACK.forEach(function(c){ h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(c.n)+'"></span> '+esc(c.n)+'</span><span class="v">'+eur0(spMio[c.n]||0)+' · senza budget</span></div>'; });
+        h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(c.n)+'"></span> '+esc(c.n)+'</span><span class="v">'+eur0(sp)+(bb?' / '+eur0(bb):' · budget not set')+'</span>'+(bb?bar(sp,bb):'')+'</div>'; });
+      CAT_TRACK.forEach(function(c){ h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(c.n)+'"></span> '+esc(c.n)+'</span><span class="v">'+eur0(spMio[c.n]||0)+' · no budget</span></div>'; });
       // spese tue in categorie che non sono nel tuo piano (es. Spesa alimentare): senza budget
       var nelPiano=CAT_PER.concat(CAT_TRACK, FISSE).map(function(c){ return c.n; });
       Object.keys(spMio).filter(function(k){ return spMio[k] && nelPiano.indexOf(k)<0; }).sort().forEach(function(k){
-        h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(k)+'"></span> '+esc(k)+'</span><span class="v">'+eur0(spMio[k])+' · senza budget</span></div>'; });
-      FISSE.forEach(function(f){ if(spMio[f.n]) h+='<div class="bud"><span class="n">'+esc(f.n)+' <span class="tag fix">fissa</span></span><span class="v">'+eur0(spMio[f.n])+' / '+eur0(f.b*nM)+'</span></div>'; });
+        h+='<div class="bud"><span class="n"><span class="dot" style="background:'+catCol(k)+'"></span> '+esc(k)+'</span><span class="v">'+eur0(spMio[k])+' · no budget</span></div>'; });
+      FISSE.forEach(function(f){ if(spMio[f.n]) h+='<div class="bud"><span class="n">'+esc(f.n)+' <span class="tag fix">fixed</span></span><span class="v">'+eur0(spMio[f.n])+' / '+eur0(f.b*nM)+'</span></div>'; });
       h+='</div>';
     }
-    h+='<details class="card"><summary><b>Le tue voci ricorrenti</b> · '+(recPer.length+recInc.length)+'</summary>'+righeRicorrenti(recPer,"data/users/"+uid+"/recurring")
-      +(recInc.length?'<p class="lab">Entrate</p>'+righeRicorrenti(recInc,"data/users/"+uid+"/incomeRec",true):'')+'</details>';
+    h+='<details class="card"><summary><b>Your recurring items</b> · '+(recPer.length+recInc.length)+'</summary>'+righeRicorrenti(recPer,"data/users/"+uid+"/recurring")
+      +(recInc.length?'<p class="lab">Income</p>'+righeRicorrenti(recInc,"data/users/"+uid+"/incomeRec",true):'')+'</details>';
     return h;
   }
 
@@ -990,14 +995,14 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   }
   function sw(col){ return '<i style="background:'+col+'"></i>'; }
   function chartCats(rows){
-    if(!rows.length) return '<p class="empty">Nessuna spesa in questo periodo.</p>';
+    if(!rows.length) return '<p class="empty">No spending in this period.</p>';
     var W=340, rh=34, H=rows.length*rh, max=rows[0].v, vw=fmt(max,0).length*6+12, k=(W-vw)/max;
-    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Speso per categoria, dalla più alta">';
+    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Spending by category, highest first">';
     rows.forEach(function(r,i){
       // barra unica: prima la parte tua, poi la tua metà delle condivise (come nel grafico mese per mese)
       var y=i*rh, w=Math.max(2,r.v*k), wm=r.v ? w*r.mie/r.v : 0, gap=(r.mie&&r.cond)?1:0;
-      var tip = r.mie&&r.cond ? r.n+": "+eur(r.v)+" (tue "+eur(r.mie)+", condivise, la tua metà "+eur(r.cond)+")"
-        : r.n+": "+eur(r.v)+", "+(r.mie?"spesa tua":"condivisa, la tua metà");
+      var tip = r.mie&&r.cond ? r.n+": "+eur(r.v)+" (yours "+eur(r.mie)+", your half of shared "+eur(r.cond)+")"
+        : r.n+": "+eur(r.v)+", "+(r.mie?"your expense":"your half of shared");
       o+='<g data-tip="'+esc(tip)+'"><rect x="0" y="'+y+'" width="'+W+'" height="'+rh+'" fill="transparent"/>'
         +'<text x="0" y="'+(y+12)+'" font-size="10.5" fill="var(--ink)">'+esc(r.n)+'</text>'
         +(r.mie?'<rect x="0" y="'+(y+17)+'" width="'+Math.max(1,wm-gap)+'" height="11" rx="2" fill="'+COL_MIE+'"/>':'')
@@ -1011,10 +1016,10 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var s=nice(0, Math.max.apply(null,tot.concat([1])), 4), L=axisW(s.ticks);
     var y=function(v){ return H-bot-(v-s.lo)/(s.hi-s.lo)*(H-bot-top); };
     var step=(W-L)/12, bw=step*.72;
-    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Speso mese per mese">'+gridY(s,y,L,W);
+    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Spending month by month">'+gridY(s,y,L,W);
     rows.forEach(function(r,i){
       var x=L+i*step+(step-bw)/2, t=r.mie+r.cond;
-      o+='<g data-tip="'+esc(MESI[i].charAt(0).toUpperCase()+MESI[i].slice(1)+": "+eur(t)+" (tue "+eur(r.mie)+", condivise, la tua metà "+eur(r.cond)+")")+'">';
+      o+='<g data-tip="'+esc(MESI[i].charAt(0).toUpperCase()+MESI[i].slice(1)+": "+eur(t)+" (yours "+eur(r.mie)+", your half of shared "+eur(r.cond)+")")+'">';
       if(r.mie) o+='<rect x="'+x+'" y="'+y(r.mie)+'" width="'+bw+'" height="'+(y(0)-y(r.mie))+'" fill="'+COL_MIE+'"/>';
       if(r.cond) o+='<rect x="'+x+'" y="'+y(r.mie+r.cond)+'" width="'+bw+'" height="'+(y(r.mie)-y(r.mie+r.cond))+'" fill="'+COL_COND+'"/>';
       if(t) o+='<text x="'+(x+bw/2)+'" y="'+(y(t)-4)+'" text-anchor="middle" font-size="7.5" fill="var(--ink-soft)">'+fmt(t,0)+'</text>';
@@ -1039,27 +1044,27 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     function inR(mk){ return mk>=range[0] && mk<=range[1]; }
     mine.forEach(function(e){ var c=e.cat; if(!inR(e.month||"") || RISPARMIO.indexOf(c)>=0) return; addCat(c,e.amount||0,"mie"); grandi.push([e.note||c, c, e.amount||0, e.date, false]); });
     shared.forEach(function(e){ if(!inR(e.month||"")) return; addCat(e.cat,(e.amount||0)/2,"cond"); grandi.push([e.note||e.cat, e.cat, (e.amount||0)/2, e.date, true]); });
-    bills.forEach(function(b){ if(!inR(meseBolletta(b))) return; addCat("Bollette",(b.amount||0)/2,"cond"); grandi.push([(BOLLETTE[b.type]||b.type)+(b.note?" · "+b.note:""), "Bollette", (b.amount||0)/2, billDate(b), true]); });
+    bills.forEach(function(b){ if(!inR(meseBolletta(b))) return; addCat("Bills",(b.amount||0)/2,"cond"); grandi.push([(BOLLETTE[b.type]||b.type)+(b.note?" · "+b.note:""), "Bills", (b.amount||0)/2, billDate(b), true]); });
     for(var mm=0; mm<12; mm++){ var mk=monthKey(y,mm); if(!inR(mk)) continue;
       expandRules(recPer,y,mm).forEach(function(e){ var c=e.cat; if(RISPARMIO.indexOf(c)<0) addCat(c,e.amount||0,"mie"); });
       expandRules(recCom,y,mm).forEach(function(e){ addCat(e.cat,(e.amount||0)/2,"cond"); }); }
     var cl=Object.keys(cats).map(function(k){return cats[k];}).sort(function(p,q){return q.v-p.v;});
     grandi.sort(function(p,q){return q[2]-p[2];});
-    var c=contoPartner(), d=c.bal, dl = d>=0 ? PARTNER+" ti deve, oggi" : "Devi "+aP(PARTNER)+", oggi";
-    var h='<div class="row-ctl" style="justify-content:flex-end">'+seg("repPer", S.repPer, [["mese","Mese"],["anno","Anno"]], "Periodo", "sm")+'</div>';
-    if(cl.length) h+='<p class="lede">'+(a?(y===now.getFullYear()?"Dal 1° gennaio":"Nel "+y):"A "+MESI[cur.m])+' la voce più alta è <b>'+esc(cl[0].n)+'</b>, con <b>'+eur0(cl[0].v)+'</b>.</p>';
-    h+='<p class="hint">Contano le spese tue e la tua metà di quelle condivise. Restano fuori i soldi messi da parte e i giroconti.</p>';
-    var oggiTxt = y===now.getFullYear() ? " al "+now.getDate()+" "+MESI[now.getMonth()] : "";
+    var c=contoPartner(), d=c.bal, dl = d>=0 ? PARTNER+" owes you, today" : "You owe "+PARTNER+", today";
+    var h='<div class="row-ctl" style="justify-content:flex-end">'+seg("repPer", S.repPer, [["mese","Month"],["anno","Year"]], "Period", "sm")+'</div>';
+    if(cl.length) h+='<p class="lede">'+(a?(y===now.getFullYear()?"Since 1 January":"In "+y):"In "+MESI[cur.m])+', the biggest item is <b>'+esc(cl[0].n)+'</b>, with <b>'+eur0(cl[0].v)+'</b>.</p>';
+    h+='<p class="hint">Counts your expenses plus your half of the shared ones. Money set aside and transfers between your accounts are left out.</p>';
+    var oggiTxt = y===now.getFullYear() ? " to "+now.getDate()+" "+MESI[now.getMonth()] : "";
     h+='<div class="cards">'
-      +'<div class="card"><span class="k">'+(a?"Speso dal 1° gennaio"+oggiTxt:"Speso a "+MESI[cur.m]+(isCurMonth()?", fino a oggi":""))+'</span><span class="v">'+eur0(tot)+'</span></div>'
-      +'<div class="card"><span class="k">'+(a?"Media al mese"+(chiusi&&chiusi<12?", gennaio-"+MESI[chiusi-1]:""):"Al giorno"+(isCurMonth()?", finora":""))+'</span><span class="v">'+eur0(a?media:tot/(isCurMonth()?now.getDate():new Date(y,cur.m+1,0).getDate()))+'</span></div>'
+      +'<div class="card"><span class="k">'+(a?"Spent since 1 January"+oggiTxt:"Spent in "+MESI[cur.m]+(isCurMonth()?", to date":""))+'</span><span class="v">'+eur0(tot)+'</span></div>'
+      +'<div class="card"><span class="k">'+(a?"Monthly average"+(chiusi&&chiusi<12?", January–"+MESI[chiusi-1]:""):"Per day"+(isCurMonth()?", so far":""))+'</span><span class="v">'+eur0(a?media:tot/(isCurMonth()?now.getDate():new Date(y,cur.m+1,0).getDate()))+'</span></div>'
       +'<div class="card"><span class="k">'+dl+'</span><span class="v '+(d>0?"good":d<0?"over":"")+'">'+eur(Math.abs(d))+'</span></div></div>';
-    var leg='<div class="legend"><span>'+sw(COL_MIE)+'Spese tue</span><span>'+sw(COL_COND)+'Condivise, la tua metà</span></div>';
-    h+='<section class="card" id="categorie"><h2>Per categoria, '+(a?"dall'inizio dell'anno":"a "+MESI[cur.m])+'</h2>'+leg+chartCats(cl)+'</section>';
-    if(a) h+='<section class="card" id="mesi"><h2>Mese per mese</h2>'+leg+chartMesi(rows)+(y===now.getFullYear()?'<p class="note">'+MESI[now.getMonth()].charAt(0).toUpperCase()+MESI[now.getMonth()].slice(1)+' arriva a oggi.</p>':'')+'</section>';
+    var leg='<div class="legend"><span>'+sw(COL_MIE)+'Your expenses</span><span>'+sw(COL_COND)+'Your half of shared</span></div>';
+    h+='<section class="card" id="categorie"><h2>By category, '+(a?"since the start of the year":"in "+MESI[cur.m])+'</h2>'+leg+chartCats(cl)+'</section>';
+    if(a) h+='<section class="card" id="mesi"><h2>Month by month</h2>'+leg+chartMesi(rows)+(y===now.getFullYear()?'<p class="note">'+MESI[now.getMonth()].charAt(0).toUpperCase()+MESI[now.getMonth()].slice(1)+' runs to today.</p>':'')+'</section>';
     if(grandi.length){
-      h+='<section class="card"><h2>Le spese più grandi'+(a?" del "+y:" di "+MESI[cur.m])+'</h2>';
-      grandi.slice(0,5).forEach(function(t){ h+='<div class="bud"><span class="n">'+esc(t[0])+(t[4]?'<span class="tag casa">Condivisa, metà</span>':'')+'<span class="sub" style="display:block">'+esc(t[1])+(t[3]?' · '+parseInt(t[3].slice(8,10),10)+' '+MESIB[parseInt(t[3].slice(5,7),10)-1]:'')+'</span></span><span class="v">'+eur(t[2])+'</span></div>'; });
+      h+='<section class="card"><h2>Biggest expenses'+(a?" in "+y:" in "+MESI[cur.m])+'</h2>';
+      grandi.slice(0,5).forEach(function(t){ h+='<div class="bud"><span class="n">'+esc(t[0])+(t[4]?'<span class="tag casa">Shared, half</span>':'')+'<span class="sub" style="display:block">'+esc(t[1])+(t[3]?' · '+parseInt(t[3].slice(8,10),10)+' '+MESIB[parseInt(t[3].slice(5,7),10)-1]:'')+'</span></span><span class="v">'+eur(t[2])+'</span></div>'; });
       h+='</section>';
     }
     return h;
@@ -1069,8 +1074,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
      users/<uid>/patrimonio/<id>: {n, t, v0 (1° gennaio), base:{data, valore, ts}, auto, conto, nota, ordine}
      Valore di oggi = base.valore + i movimenti dopo la base fatti con quel conto (spese −, entrate +, giroconti ±).
      users/<uid>/patrimonioStorico/serie: {inizio:{data, patrimonio, credito}, mesi:{"aaaa-mm": fine mese}, cred:{…}, cassa:{"aaaa-mm":{e,u,s,r}}, fino} */
-  var TIPI=["Conti","Risparmi","Investimenti","Beni e crediti","Debiti"];
-  var TCOL={"Conti":"var(--c1)","Risparmi":"var(--c3)","Investimenti":"var(--c5)","Beni e crediti":"var(--c4)","Debiti":"var(--c2)"};
+  var TIPI=["Accounts","Savings","Investments","Assets","Debts"];
+  var TCOL={"Accounts":"var(--c1)","Savings":"var(--c3)","Investments":"var(--c5)","Assets":"var(--c4)","Debts":"var(--c2)"};
   function contiLab(){ var l=[]; voci.forEach(function(v){ if(v.auto && v.conto && l.indexOf(v.conto)<0) l.push(v.conto); }); return l; }
   function contoPred(){ var l=contiLab(), last=null; try{ last=localStorage.getItem("halfsies-conto"); }catch(e){} return l.indexOf(last)>=0 ? last : (l[0]||""); }
   function dopoBase(e, base){ var d=e.date||""; return d>base.data || (d===base.data && (e.ts||0)>(base.ts||0)); }
@@ -1121,7 +1126,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     if(ini) rows.push({l:ini.data.slice(5)==="01-01"?"1/1":parseInt(ini.data.slice(8,10),10)+"/"+parseInt(ini.data.slice(5,7),10), p:ini.patrimonio, t:ini.patrimonio+(ini.credito||0)});
     else rows.push({l:"1/1", p:sum(voci.map(function(v){return +v.v0||0;})), t:sum(voci.map(function(v){return +v.v0||0;}))});
     for(var m=0;m<now.getMonth();m++){ var mk=monthKey(y,m); if(storico && storico.mesi && storico.mesi[mk]!=null) rows.push({l:MESIB[m], p:storico.mesi[mk], t:storico.mesi[mk]+((storico.cred||{})[mk]||0)}); }
-    var oggi=patOggi(); rows.push({l:"oggi", p:oggi, t:oggi+d});
+    var oggi=patOggi(); rows.push({l:"today", p:oggi, t:oggi+d});
     return rows;
   }
   function righeCassa(){
@@ -1134,7 +1139,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       var c0=storico.cassa[cmk], fino=(c0 && storico.fino && storico.fino.slice(0,7)===cmk) ? storico.fino : cmk+"-00";
       var e=(c0?c0.e:0); income.forEach(function(x){ if(x.month===cmk && (x.date||"")>fino) e+=x.amount||0; });
       expandRules(recInc,y,now.getMonth()).forEach(function(x){ if(x.date>fino) e+=x.amount||0; });
-      var risp=voci.filter(function(v){return v.t==="Risparmi"||v.t==="Investimenti";}).map(function(v){return v.conto;}), r=(c0?c0.r:0);
+      var risp=voci.filter(function(v){return v.t==="Savings"||v.t==="Investments";}).map(function(v){return v.conto;}), r=(c0?c0.r:0);
       giroconti.forEach(function(g){ if(g.month===cmk && (g.date||"")>fino){ if(risp.indexOf(g.a)>=0) r+=g.amount||0; if(risp.indexOf(g.da)>=0) r-=g.amount||0; } });
       var s=patOggi()-base;
       out.push({l:MESIB[now.getMonth()], e:e, s:s, u:e-s, r:r});
@@ -1146,7 +1151,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var s=nice(Math.min.apply(null,all), Math.max.apply(null,all), 4), L=axisW(s.ticks);
     var y=function(v){ return H-bot-(v-s.lo)/(s.hi-s.lo)*(H-bot-top); };
     var n=Math.max(1,rows.length-1), x=function(i){ return L+6+i*(W-L-6-R)/n; };
-    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Patrimonio a fine mese dal 1° gennaio">'+gridY(s,y,L,W-R+8);
+    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Net worth at the end of each month since 1 January">'+gridY(s,y,L,W-R+8);
     [["p","var(--deep)",""],["t","var(--c4)","5 4"]].forEach(function(se){
       var pts=rows.map(function(r,i){ return x(i).toFixed(1)+","+y(r[se[0]]).toFixed(1); }).join(" ");
       o+='<polyline points="'+pts+'" fill="none" stroke="'+se[1]+'" stroke-width="2.2" stroke-linejoin="round"'+(se[2]?' stroke-dasharray="'+se[2]+'"':'')+'/>';
@@ -1157,7 +1162,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var w=(W-L-6-R)/n;
     rows.forEach(function(r,i){
       o+='<text x="'+x(i)+'" y="'+(H-6)+'" text-anchor="middle" font-size="8.5" fill="var(--ink-soft)">'+r.l+'</text>';
-      o+='<rect data-tip="'+esc(r.l+": patrimonio "+eur(r.p)+", "+lab2+" "+eur(r.t))+'" x="'+(x(i)-w/2)+'" y="'+top+'" width="'+w+'" height="'+(H-bot-top)+'" fill="transparent"/>';
+      o+='<rect data-tip="'+esc(r.l+": net worth "+eur(r.p)+", "+lab2+" "+eur(r.t))+'" x="'+(x(i)-w/2)+'" y="'+top+'" width="'+w+'" height="'+(H-bot-top)+'" fill="transparent"/>';
     });
     return wrapChart(o+'</svg>');
   }
@@ -1168,11 +1173,11 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var s=nice(mn,mx,5), L=axisW(s.ticks);
     var y=function(v){ return H-bot-(v-s.lo)/(s.hi-s.lo)*(H-bot-top); };
     var step=(W-L)/12, bw=step*.7, cx=function(i){ return L+i*step+step/2; };
-    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Entrate e uscite di ogni mese, con il saldo e i risparmi">'+gridY(s,y,L,W);
+    var o='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Money in and out each month, with the balance and savings">'+gridY(s,y,L,W);
     o+='<line x1="'+L+'" x2="'+W+'" y1="'+y(0)+'" y2="'+y(0)+'" stroke="var(--ink-soft)"/>';
     rows.forEach(function(r,i){
       var x=L+i*step+(step-bw)/2;
-      o+='<g data-tip="'+esc(r.l+": entrate "+eur(r.e)+", uscite "+eur(r.u)+", saldo "+sg(r.s)+", risparmi "+sg(r.r))+'">'
+      o+='<g data-tip="'+esc(r.l+": in "+eur(r.e)+", out "+eur(r.u)+", balance "+sg(r.s)+", savings "+sg(r.r))+'">'
         +'<rect x="'+x+'" y="'+y(r.e)+'" width="'+bw+'" height="'+(y(0)-y(r.e))+'" fill="var(--c3)"/>'
         +'<rect x="'+x+'" y="'+y(0)+'" width="'+bw+'" height="'+Math.max(0,y(-r.u)-y(0))+'" fill="var(--c2)"/>'
         +'<line x1="'+(x-2)+'" x2="'+(x+bw+2)+'" y1="'+y(r.s)+'" y2="'+y(r.s)+'" stroke="var(--ink)" stroke-width="2.6"/>'
@@ -1186,53 +1191,53 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   }
   function renderPat(){
     salvaFineMese();
-    var h='<p class="priv">🔒 Lo vedi solo tu. Le voci le scegli tu.</p>';
+    var h='<p class="priv">🔒 Only you can see this. You choose the items.</p>';
     if(!voci.length){
-      h+='<div class="card"><h2>Il tuo patrimonio è vuoto</h2><p class="sub">Aggiungi le tue voci: conti, risparmi, investimenti, crediti, debiti. '
-        +'I conti che segni come automatici si aggiornano da soli con i movimenti che registri.</p>'
-        +'<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem"><button type="button" class="btn" data-act="addItem">+ Aggiungi voce</button>'
-        +'<button type="button" class="btn ghost" data-act="pat-file">Carica il file del patrimonio</button></div>'
-        +'<p class="note">Il file del patrimonio è un backup con le tue voci e la storia dei mesi passati.</p></div>';
+      h+='<div class="card"><h2>Your net worth is empty</h2><p class="sub">Add your items: accounts, savings, investments, assets, debts. '
+        +'Accounts you mark as automatic update themselves with the transactions you add.</p>'
+        +'<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem"><button type="button" class="btn" data-act="addItem">+ Add item</button>'
+        +'<button type="button" class="btn ghost" data-act="pat-file">Upload a net worth file</button></div>'
+        +'<p class="note">A net worth file is a backup with your items and the history of past months.</p></div>';
       return h;
     }
     var o=PARTNER, d=contoPartner().bal, rows=righePat(), oggi=rows[rows.length-1].p, ini=rows[0].p;
-    var lab2 = d>=0 ? "con il credito verso "+o : "meno il debito verso "+o;
+    var lab2 = d>=0 ? "plus what "+o+" owes you" : "minus what you owe "+o;
     h+='<div class="cards">'
-      +'<div class="card"><span class="k">'+(rows[0].l==="1/1"?"1° gennaio":"Dal "+rows[0].l)+'</span><span class="v">'+eur0(ini)+'</span></div>'
-      +'<div class="card"><span class="k">Oggi, '+now.getDate()+' '+MESI[now.getMonth()]+'</span><span class="v">'+eur0(oggi)+'</span></div>'
-      +'<div class="card"><span class="k">Variazione dall\'inizio</span><span class="v '+(oggi-ini>=0?"good":"over")+'">'+sg(oggi-ini)+'</span></div></div>';
-    h+='<section class="card"><h2>Il tuo patrimonio, dal 1° gennaio</h2>'
-      +'<div class="legend"><span>'+sw("var(--deep)")+'Patrimonio</span><span>'+sw("var(--c4)")+'Patrimonio '+lab2+'</span></div>'
-      +chartPat(rows, lab2)+'<p class="note">Tutte le tue voci insieme. Ogni punto è la fine del mese; l\'ultimo è oggi.'+(storico && storico.nota ? " "+esc(storico.nota) : "")+'</p></section>';
+      +'<div class="card"><span class="k">'+(rows[0].l==="1/1"?"1 January":"From "+rows[0].l)+'</span><span class="v">'+eur0(ini)+'</span></div>'
+      +'<div class="card"><span class="k">Today, '+now.getDate()+' '+MESI[now.getMonth()]+'</span><span class="v">'+eur0(oggi)+'</span></div>'
+      +'<div class="card"><span class="k">Change since the start</span><span class="v '+(oggi-ini>=0?"good":"over")+'">'+sg(oggi-ini)+'</span></div></div>';
+    h+='<section class="card"><h2>Your net worth since 1 January</h2>'
+      +'<div class="legend"><span>'+sw("var(--deep)")+'Net worth</span><span>'+sw("var(--c4)")+'Net worth '+lab2+'</span></div>'
+      +chartPat(rows, lab2)+'<p class="note">All your items together. Each point is the end of a month; the last one is today.'+(storico && storico.nota ? " "+esc(storico.nota) : "")+'</p></section>';
     var cr=righeCassa();
     if(cr && cr.length){
       var E=sum(cr.map(function(r){return r.e;})), Uu=sum(cr.map(function(r){return r.u;})), Sa=sum(cr.map(function(r){return r.s;})), Ri=sum(cr.map(function(r){return r.r;}));
-      h+='<section class="card"><h2>Soldi entrati e usciti, mese per mese</h2>'
-        +'<div class="legend"><span>'+sw("var(--c3)")+'Entrate</span><span>'+sw("var(--c2)")+'Uscite</span><span><i style="background:var(--ink);height:3px;vertical-align:3px"></i>Saldo del mese</span><span>'+sw("var(--c5)")+'Risparmi del mese</span></div>'
+      h+='<section class="card"><h2>Money in and out, month by month</h2>'
+        +'<div class="legend"><span>'+sw("var(--c3)")+'Money in</span><span>'+sw("var(--c2)")+'Money out</span><span><i style="background:var(--ink);height:3px;vertical-align:3px"></i>Month balance</span><span>'+sw("var(--c5)")+'Month savings</span></div>'
         +chartCassa(cr)
         +'<table class="plan" style="margin-top:.6rem"><tbody>'
-        +'<tr><td>Entrate dal 1° gennaio</td><td>'+eur0(E)+'</td></tr><tr><td>Uscite</td><td>'+eur0(Uu)+'</td></tr>'
-        +'<tr class="tot"><td>Saldo</td><td>'+sg(Sa)+'</td></tr><tr><td>di cui nei risparmi</td><td>'+sg(Ri)+'</td></tr><tr><td>di cui sui conti</td><td>'+sg(Sa-Ri)+'</td></tr>'
-        +'<tr><td>'+(d>=0?"Più quello che ti deve "+o:"Meno quello che devi "+aP(o))+'</td><td>'+sg(d)+'</td></tr>'
-        +'<tr class="tot"><td>Saldo contando il conto con '+o+'</td><td>'+sg(Sa+d)+'</td></tr></tbody></table>'
-        +'<p class="note">Le uscite contano per intero anche le spese condivise pagate da te: la metà dell\'altro rientra nel conto tra voi. I giroconti tra i tuoi conti non contano.</p></section>';
+        +'<tr><td>Money in since 1 January</td><td>'+eur0(E)+'</td></tr><tr><td>Money out</td><td>'+eur0(Uu)+'</td></tr>'
+        +'<tr class="tot"><td>Balance</td><td>'+sg(Sa)+'</td></tr><tr><td>of which in savings</td><td>'+sg(Ri)+'</td></tr><tr><td>of which in accounts</td><td>'+sg(Sa-Ri)+'</td></tr>'
+        +'<tr><td>'+(d>=0?"Plus what "+o+" owes you":"Minus what you owe "+o)+'</td><td>'+sg(d)+'</td></tr>'
+        +'<tr class="tot"><td>Balance after settling up with '+o+'</td><td>'+sg(Sa+d)+'</td></tr></tbody></table>'
+        +'<p class="note">Money out counts the full amount of shared expenses you paid: the other half is in the balance between you. Transfers between your accounts do not count.</p></section>';
       var ob=pos(SET.risparmio)*12+pos(SET.q13)+pos(SET.q14);
-      if(ob) h+='<div class="card"><p class="k">Risparmio del '+now.getFullYear()+'</p><p class="mid">'+eur0(Ri)+' <span style="font-size:.9rem;color:var(--ink-soft)">di '+eur0(ob)+'</span></p>'+bar(Math.max(0,Ri),ob)
-        +'<p class="sub">'+fmt(Math.max(0,Ri)/ob*100,0)+'% dell\'obiettivo dell\'anno, dal tuo piano: '+eur0(pos(SET.risparmio))+' al mese'+(pos(SET.q13)||pos(SET.q14)?", più tredicesima e quattordicesima":"")+'.</p></div>';
+      if(ob) h+='<div class="card"><p class="k">Savings in '+now.getFullYear()+'</p><p class="mid">'+eur0(Ri)+' <span style="font-size:.9rem;color:var(--ink-soft)">of '+eur0(ob)+'</span></p>'+bar(Math.max(0,Ri),ob)
+        +'<p class="sub">'+fmt(Math.max(0,Ri)/ob*100,0)+'% of the yearly goal from your plan: '+eur0(pos(SET.risparmio))+' a month'+(pos(SET.q13)||pos(SET.q14)?", plus 13th and 14th-month pay":"")+'.</p></div>';
     }
-    h+='<section class="card"><div class="row-ctl" style="margin:0 0 .2rem"><h2>Le tue voci</h2><button type="button" class="btn sm ghost" data-act="addItem">+ Aggiungi voce</button></div>';
+    h+='<section class="card"><div class="row-ctl" style="margin:0 0 .2rem"><h2>Your items</h2><button type="button" class="btn sm ghost" data-act="addItem">+ Add item</button></div>';
     TIPI.forEach(function(t){
       var l=voci.filter(function(x){return x.t===t;}); if(!l.length) return;
       h+='<p class="lab" style="text-transform:uppercase;letter-spacing:.03em;font-weight:600">'+t+'</p>';
       l.forEach(function(x){ var v=valoreVoce(x), b=x.base||{};
         h+='<button type="button" class="tx" data-act="item" data-v="'+esc(x._id)+'"><span class="dot" style="background:'+TCOL[t]+'"></span><span class="t">'+esc(x.n)+'</span>'
-          +'<span class="a'+(v<0?" over":"")+'">'+eur(v)+'</span><span class="s">1° gennaio '+eur(+x.v0||0)+' · '+(x.auto&&x.conto?"automatico, conto «"+esc(x.conto)+"»":"aggiornato a mano il "+(b.data?b.data.split("-").reverse().join("/"):"—"))+'</span></button>';
+          +'<span class="a'+(v<0?" over":"")+'">'+eur(v)+'</span><span class="s">1 January '+eur(+x.v0||0)+' · '+(x.auto&&x.conto?"automatic, account “"+esc(x.conto)+"”":"updated by hand on "+(b.data?b.data.split("-").reverse().join("/"):"—"))+'</span></button>';
       });
     });
-    h+='<table class="plan" style="margin-top:.5rem"><tbody><tr class="tot"><td>Totale</td><td>'+eur0(sum(voci.map(function(v){return +v.v0||0;})))+' → '+eur0(oggi)+'</td></tr>'
-      +'<tr><td>'+(d>=0?"Più il credito verso "+o:"Meno il debito verso "+o)+'</td><td>'+sg(d)+'</td></tr>'
-      +'<tr class="tot"><td>Insieme</td><td>'+eur0(oggi+d)+'</td></tr></tbody></table></section>';
-    h+='<div class="recover"><span class="sub" style="margin:0">Un saldo non torna con la banca?</span><button type="button" class="link" data-act="recupera">Recupera da estratto conto</button></div>';
+    h+='<table class="plan" style="margin-top:.5rem"><tbody><tr class="tot"><td>Total</td><td>'+eur0(sum(voci.map(function(v){return +v.v0||0;})))+' → '+eur0(oggi)+'</td></tr>'
+      +'<tr><td>'+(d>=0?"Plus what "+o+" owes you":"Minus what you owe "+o)+'</td><td>'+sg(d)+'</td></tr>'
+      +'<tr class="tot"><td>Combined</td><td>'+eur0(oggi+d)+'</td></tr></tbody></table></section>';
+    h+='<div class="recover"><span class="sub" style="margin:0">A balance does not match your bank?</span><button type="button" class="link" data-act="recupera">Recover from bank statement</button></div>';
     return h;
   }
   function openItem(id){
@@ -1240,37 +1245,37 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var v=valoreVoce(x), b=x.base||{};
     var h=hd(x.n);
     h+='<p class="big'+(v<0?" over":"")+'">'+eur(v)+'</p><p class="sub">'+esc(x.t)+' · '+(x.auto&&x.conto
-        ? "si aggiorna da solo con i movimenti fatti con «"+esc(x.conto)+"», dal saldo di "+eur(+b.valore||0)+" del "+String(b.data||"").split("-").reverse().join("/")+"."
-        : "lo aggiorni tu: ultimo valore il "+String(b.data||"").split("-").reverse().join("/")+".")+(x.nota?" "+esc(x.nota):"")+'</p>';
-    h+='<label for="it-v">'+(x.auto?"Il saldo in banca è diverso? Scrivi quello di oggi":"Valore di oggi")+'</label><input class="field" id="it-v" type="text" inputmode="decimal" value="'+fmt(Math.abs(v))+'">';
-    h+='<p class="note" id="it-diff"></p><button type="button" class="btn full" data-act="it-save" data-v="'+esc(x._id)+'" style="margin-top:.8rem">'+(x.auto?"Allinea il saldo":"Aggiorna il valore")+'</button>';
-    h+='<button type="button" class="btn ghost full" data-act="it-del" data-v="'+esc(x._id)+'" style="margin-top:.5rem">Elimina la voce</button>';
+        ? "updates itself with transactions from “"+esc(x.conto)+"”, starting from a balance of "+eur(+b.valore||0)+" on "+String(b.data||"").split("-").reverse().join("/")+"."
+        : "you update it by hand: last value on "+String(b.data||"").split("-").reverse().join("/")+".")+(x.nota?" "+esc(x.nota):"")+'</p>';
+    h+='<label for="it-v">'+(x.auto?"Is the bank balance different? Enter today's balance":"Today's value")+'</label><input class="field" id="it-v" type="text" inputmode="decimal" value="'+fmt(Math.abs(v))+'">';
+    h+='<p class="note" id="it-diff"></p><button type="button" class="btn full" data-act="it-save" data-v="'+esc(x._id)+'" style="margin-top:.8rem">'+(x.auto?"Match the bank balance":"Update the value")+'</button>';
+    h+='<button type="button" class="btn ghost full" data-act="it-del" data-v="'+esc(x._id)+'" style="margin-top:.5rem">Delete the item</button>';
     openSheet(h);
-    var inp=$("it-v"); inp.oninput=function(){ var n=num(inp.value)*(x.t==="Debiti"?-1:1); $("it-diff").textContent = Math.abs(n-v)>=0.01 ? "Differenza "+(n-v>0?"+":"−")+eur(Math.abs(n-v))+(x.auto?": da oggi il conto riparte da questo saldo.":".") : ""; };
+    var inp=$("it-v"); inp.oninput=function(){ var n=num(inp.value)*(x.t==="Debts"?-1:1); $("it-diff").textContent = Math.abs(n-v)>=0.01 ? "Difference "+(n-v>0?"+":"−")+eur(Math.abs(n-v))+(x.auto?": from today the account starts again from this balance.":".") : ""; };
   }
   var NI=null;
   function openAddItem(){
-    NI=NI||{t:"Conti", auto:true};
-    var h=hd("Nuova voce");
-    h+='<label for="ni-n">Nome</label><input class="field" id="ni-n" type="text" placeholder="per esempio Conto deposito, Auto, Prestito" value="'+esc(NI.n||"")+'">';
-    h+='<p class="lab">Tipo</p>'+chips("ni-t", NI.t, TIPI.map(function(t){return [t,t,TCOL[t]];}));
-    h+='<div class="pair"><div><label for="ni-v">Valore di oggi</label><input class="field" id="ni-v" type="text" inputmode="decimal" placeholder="0,00" value="'+esc(NI.v||"")+'"></div>'
-      +'<div><label for="ni-v0">Al 1° gennaio</label><input class="field" id="ni-v0" type="text" inputmode="decimal" placeholder="facoltativo" value="'+esc(NI.v0||"")+'"></div></div>';
-    if(NI.t==="Conti"||NI.t==="Risparmi"||NI.t==="Debiti"){
-      h+='<label class="chk"><input type="checkbox" id="ni-auto"'+(NI.auto?" checked":"")+'> Si aggiorna da solo con i movimenti</label>';
-      if(NI.auto) h+='<label for="ni-c">Nome breve, da scegliere quando registri un movimento</label><input class="field" id="ni-c" type="text" placeholder="per esempio ING" value="'+esc(NI.c||"")+'">';
+    NI=NI||{t:"Accounts", auto:true};
+    var h=hd("New item");
+    h+='<label for="ni-n">Name</label><input class="field" id="ni-n" type="text" placeholder="for example Deposit account, Car, Loan" value="'+esc(NI.n||"")+'">';
+    h+='<p class="lab">Type</p>'+chips("ni-t", NI.t, TIPI.map(function(t){return [t,t,TCOL[t]];}));
+    h+='<div class="pair"><div><label for="ni-v">Today\'s value</label><input class="field" id="ni-v" type="text" inputmode="decimal" placeholder="0.00" value="'+esc(NI.v||"")+'"></div>'
+      +'<div><label for="ni-v0">On 1 January</label><input class="field" id="ni-v0" type="text" inputmode="decimal" placeholder="optional" value="'+esc(NI.v0||"")+'"></div></div>';
+    if(NI.t==="Accounts"||NI.t==="Savings"||NI.t==="Debts"){
+      h+='<label class="chk"><input type="checkbox" id="ni-auto"'+(NI.auto?" checked":"")+'> Updates itself with transactions</label>';
+      if(NI.auto) h+='<label for="ni-c">Short name, to choose when you add a transaction</label><input class="field" id="ni-c" type="text" placeholder="for example ING" value="'+esc(NI.c||"")+'">';
     }
-    h+='<button type="button" class="btn full" data-act="ni-save" style="margin-top:1rem">Aggiungi</button>';
+    h+='<button type="button" class="btn full" data-act="ni-save" style="margin-top:1rem">Add</button>';
     openSheet(h);
     ["n","v","v0","c"].forEach(function(k){ var el=$("ni-"+k); if(el) el.oninput=function(){ NI[k]=el.value; }; });
     var au=$("ni-auto"); if(au) au.onchange=function(){ NI.auto=au.checked; openAddItem(); };
   }
   function salvaItem(){
-    var n=String(NI.n||"").trim(), v=num(NI.v), v0=num(NI.v0), auto=!!NI.auto && (NI.t==="Conti"||NI.t==="Risparmi"||NI.t==="Debiti");
-    if(!n){ toast("Scrivi il nome"); return; }
-    var neg=NI.t==="Debiti"?-1:1, c=String(NI.c||"").trim()||n;
+    var n=String(NI.n||"").trim(), v=num(NI.v), v0=num(NI.v0), auto=!!NI.auto && (NI.t==="Accounts"||NI.t==="Savings"||NI.t==="Debts");
+    if(!n){ toast("Enter the name"); return; }
+    var neg=NI.t==="Debts"?-1:1, c=String(NI.c||"").trim()||n;
     db.collection("data/users/"+uid+"/patrimonio").add({n:n, t:NI.t, v0:Math.abs(v0)*neg, base:{data:OGGI, valore:Math.abs(v)*neg, ts:Date.now()}, auto:auto, conto:auto?c:null, ordine:voci.length+1, ts:Date.now()})
-      .then(function(){ NI=null; closeSheet(); toast("Voce aggiunta"); }).catch(function(){ toast("Non è stato possibile salvare"); });
+      .then(function(){ NI=null; closeSheet(); toast("Item added"); }).catch(function(){ toast("Could not save"); });
   }
 
   /* ---------- impostazioni personali: il foglio ---------- */
@@ -1286,22 +1291,22 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   }
   function openSettings(){
     var v=function(x){ return x ? String(x) : ""; };
-    var h=hd("Il tuo piano");
-    h+='<p class="note" style="margin-top:0">Vale solo per te e lo vede solo il tuo account.</p>'
-      +'<label for="s-ent">Entrate del mese (stipendio netto)</label><input id="s-ent" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.entrate))+'">'
-      +'<div class="pair"><div><label for="s-q13">Tredicesima</label><input id="s-q13" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.q13))+'"></div>'
-      +'<div><label for="s-q14">Quattordicesima</label><input id="s-q14" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.q14))+'"></div></div>'
-      +'<label for="s-fis">Spese fisse del mese, una per riga: nome = importo</label><textarea id="s-fis" rows="4" placeholder="Affitto = 750">'+esc(righeTesto(FISSE,true))+'</textarea>'
-      +'<label for="s-ris">Al risparmio, ogni mese</label><input id="s-ris" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.risparmio))+'">'
+    var h=hd("Your plan");
+    h+='<p class="note" style="margin-top:0">It applies only to you, and only your account can see it.</p>'
+      +'<label for="s-ent">Monthly income (net salary)</label><input id="s-ent" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.entrate))+'">'
+      +'<div class="pair"><div><label for="s-q13">13th-month pay</label><input id="s-q13" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.q13))+'"></div>'
+      +'<div><label for="s-q14">14th-month pay</label><input id="s-q14" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.q14))+'"></div></div>'
+      +'<label for="s-fis">Fixed monthly costs, one per line: name = amount</label><textarea id="s-fis" rows="4" placeholder="Rent = 750">'+esc(righeTesto(FISSE,true))+'</textarea>'
+      +'<label for="s-ris">To savings, every month</label><input id="s-ris" type="number" inputmode="decimal" min="0" value="'+v(pos(SET.risparmio))+'">'
       +'<p class="note" id="s-lib"></p>'
-      +'<label for="s-cat">Categorie con budget, una per riga: nome = importo</label><textarea id="s-cat" rows="6">'+esc(righeTesto(CAT_PER,true))+'</textarea>'
-      +'<label for="s-trk">Categorie da seguire senza budget, una per riga</label><textarea id="s-trk" rows="3">'+esc(righeTesto(CAT_TRACK,false))+'</textarea>'
-      +'<p class="note">Se cambi il nome di una categoria, le spese già registrate con il vecchio nome escono dalle barre.</p>'
-      +'<button type="button" class="btn full" data-act="set-save" style="margin-top:1rem">Salva</button>';
+      +'<label for="s-cat">Categories with a budget, one per line: name = amount</label><textarea id="s-cat" rows="6">'+esc(righeTesto(CAT_PER,true))+'</textarea>'
+      +'<label for="s-trk">Categories to track without a budget, one per line</label><textarea id="s-trk" rows="3">'+esc(righeTesto(CAT_TRACK,false))+'</textarea>'
+      +'<p class="note">If you rename a category, expenses already saved with the old name drop out of the bars.</p>'
+      +'<button type="button" class="btn full" data-act="set-save" style="margin-top:1rem">Save</button>';
     openSheet(h);
     function calc(){
       var e=num($("s-ent").value), f=sum(leggiRighe($("s-fis").value,true).map(function(x){return x.b;})), r=num($("s-ris").value), c=sum(leggiRighe($("s-cat").value,true).map(function(x){return x.b;}));
-      $("s-lib").textContent="Da spendere ogni mese: "+eur0(e-f-r)+". Le categorie con budget sommano "+eur0(c)+".";
+      $("s-lib").textContent="Free to spend each month: "+eur0(e-f-r)+". Categories with a budget add up to "+eur0(c)+".";
     }
     ["s-ent","s-fis","s-ris","s-cat"].forEach(function(id){ $(id).addEventListener("input", calc); });
     calc();
@@ -1309,7 +1314,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   function salvaSettings(){
     var obj={entrate:num($("s-ent").value), q13:num($("s-q13").value), q14:num($("s-q14").value), fisse:leggiRighe($("s-fis").value,true),
       risparmio:num($("s-ris").value), catPer:leggiRighe($("s-cat").value,true), catTrack:leggiRighe($("s-trk").value,false), ts:Date.now()};
-    db.doc("data/users/"+uid+"/impostazioni/personali").set(obj).then(function(){ closeSheet(); toast("Piano salvato"); }).catch(function(){ toast("Non è stato possibile salvare"); });
+    db.doc("data/users/"+uid+"/impostazioni/personali").set(obj).then(function(){ closeSheet(); toast("Plan saved"); }).catch(function(){ toast("Could not save"); });
   }
   $("set-open").onclick=function(ev){ ev.preventDefault(); if(db && uid) openSettings(); };
 
@@ -1326,9 +1331,9 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       case "editBud": S.edit=true; render(); break;
       case "saveBud":
         var cats={}; document.querySelectorAll("[data-budc]").forEach(function(i){ var n=num(i.value); if(n>0) cats[i.dataset.budc]=n; });
-        var oggi=new Date().toLocaleDateString("it-IT",{day:"numeric",month:"long"});
-        db.casaSet({budget:{cats:cats, by:ME, at:oggi}}).then(function(){ S.edit=false; render(); toast("Budget salvato: lo vede anche "+PARTNER); })
-          .catch(function(){ toast("Non è stato possibile salvare"); });
+        var oggi=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long"});
+        db.casaSet({budget:{cats:cats, by:ME, at:oggi}}).then(function(){ S.edit=false; render(); toast("Budget saved: "+PARTNER+" sees it too"); })
+          .catch(function(){ toast("Could not save"); });
         break;
       case "add": openAdd(); break;
       case "row": var x=RIGHE[+v]; if(!x) break; if(x.coll) openRule(x); else openEdit(x); break;
@@ -1344,12 +1349,12 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       case "pat-file": $("bk-file").click(); break;
       case "item": openItem(v); break;
       case "it-save":
-        var xv=voci.filter(function(z){return z._id===v;})[0], nv=num($("it-v").value)*(xv && xv.t==="Debiti"?-1:1);
-        db.doc("data/users/"+uid+"/patrimonio/"+v).update({base:{data:OGGI, valore:nv, ts:Date.now()}}).then(function(){ closeSheet(); toast(xv && xv.auto?"Saldo allineato":"Valore aggiornato"); }).catch(function(){ toast("Non aggiornato"); });
+        var xv=voci.filter(function(z){return z._id===v;})[0], nv=num($("it-v").value)*(xv && xv.t==="Debts"?-1:1);
+        db.doc("data/users/"+uid+"/patrimonio/"+v).update({base:{data:OGGI, valore:nv, ts:Date.now()}}).then(function(){ closeSheet(); toast(xv && xv.auto?"Balance matched":"Value updated"); }).catch(function(){ toast("Not updated"); });
         break;
       case "it-del":
-        if(b.textContent.indexOf("Tocca")<0){ b.textContent="Tocca di nuovo per eliminare"; b.className="btn danger full"; break; }
-        db.doc("data/users/"+uid+"/patrimonio/"+v).delete().then(function(){ closeSheet(); toast("Voce eliminata"); }).catch(function(){ toast("Non eliminata"); });
+        if(b.textContent.indexOf("Tap again")<0){ b.textContent="Tap again to delete"; b.className="btn danger full"; break; }
+        db.doc("data/users/"+uid+"/patrimonio/"+v).delete().then(function(){ closeSheet(); toast("Item deleted"); }).catch(function(){ toast("Not deleted"); });
         break;
       case "addItem": NI=null; openAddItem(); break;
       case "ni-t": NI.t=v; openAddItem(); break;
@@ -1358,8 +1363,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       case "qa-save": salvaQA(); break;
       case "qa-del": eliminaQA(); break;
       case "close": closeSheet(); break;
-      case "rule-stop": db.doc(v).update({until:monthKey(now.getFullYear(), now.getMonth())}).then(function(){ closeSheet(); toast("Voce terminata"); }).catch(function(){ toast("Non aggiornata"); }); break;
-      case "rule-del": db.doc(v).delete().then(function(){ closeSheet(); toast("Voce eliminata"); }).catch(function(){ toast("Non eliminata"); }); break;
+      case "rule-stop": db.doc(v).update({until:monthKey(now.getFullYear(), now.getMonth())}).then(function(){ closeSheet(); toast("Item ended"); }).catch(function(){ toast("Not updated"); }); break;
+      case "rule-del": db.doc(v).delete().then(function(){ closeSheet(); toast("Item deleted"); }).catch(function(){ toast("Not deleted"); }); break;
       case "debito": renderDeb(); break;
       case "deb-save": salvaDeb(); break;
       case "settings": openSettings(); break;
@@ -1433,7 +1438,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     }catch(e){ console.error(e); showGate("errore"); return; }
     fsDb=makeFsDb();
     showGate("attesa");
-    auth.getRedirectResult().catch(function(){ toast("Accesso non riuscito"); });
+    auth.getRedirectResult().catch(function(){ toast("Sign-in failed"); });
     auth.onAuthStateChanged(onUser);
   }
 
@@ -1455,7 +1460,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var r=membroDi(casa, u.email);
     if(!r){ showGate("noaccess", u.email); return; }
     CASA=casa; ME=r.me.key; ME_NAME=r.me.name||u.displayName||"";
-    PK=r.altro ? r.altro.key : ""; PARTNER=r.altro ? (r.altro.name||r.altro.key) : "il partner";
+    PK=r.altro ? r.altro.key : ""; PARTNER=r.altro ? (r.altro.name||r.altro.key) : "your partner";
     uid=u.uid; db=fsDb;
     applySettings(null);
     $("who").textContent=(ME_NAME ? ME_NAME+" ("+(u.email||"")+")" : (u.email||""));
@@ -1473,8 +1478,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       var c=(e && e.code) || "";
       if(c==="auth/popup-blocked" || c==="auth/operation-not-supported-in-this-environment") return auth.signInWithRedirect(p);
       if(c==="auth/popup-closed-by-user" || c==="auth/cancelled-popup-request") return;
-      if(c==="auth/unauthorized-domain"){ toast("Questo indirizzo non è autorizzato in Firebase"); return; }
-      toast("Accesso non riuscito"+(c ? " ("+c.replace("auth/","")+")" : ""));
+      if(c==="auth/unauthorized-domain"){ toast("This address is not authorized in Firebase"); return; }
+      toast("Sign-in failed"+(c ? " ("+c.replace("auth/","")+")" : ""));
     });
   };
   function esci(ev){ if(ev && ev.preventDefault) ev.preventDefault(); if(auth) auth.signOut(); }
@@ -1505,7 +1510,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="halfsies-backup-"+oggi+".json";
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
-    toast("Backup scaricato");
+    toast("Backup downloaded");
   };
 
   // carica un backup (o il file di avvio con i membri della casa): scrive con gli stessi codici, quindi ricaricarlo non duplica
@@ -1517,8 +1522,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var rd=new FileReader();
     rd.onload=function(){
       var o=null; try{ o=JSON.parse(rd.result); }catch(e){}
-      if(!o || o.app!=="halfsies" || !o.dati || typeof o.dati!=="object"){ toast("Questo file non è un backup dell'app"); return; }
-      if(o.versione!==2){ toast("Questo file è di una versione diversa dell'app"); return; }
+      if(!o || o.app!=="halfsies" || !o.dati || typeof o.dati!=="object"){ toast("This file is not a backup of this app"); return; }
+      if(o.versione!==2){ toast("This file is from a different version of the app"); return; }
       importa(o);
     };
     rd.readAsText(f);
@@ -1526,7 +1531,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   function importa(o){
     var casa=CASA || o.casa;
     var r=membroDi(casa, user.email);
-    if(!r){ toast("Il tuo account non è tra i membri della casa di questo file"); return; }
+    if(!r){ toast("Your account is not among the household members in this file"); return; }
     var io=r.me.key, scritture=[], comuni=0, tue=0, saltate=0;
     if(!CASA && o.casa) scritture.push(["shared/casa", o.casa]);
     Object.keys(o.dati).forEach(function(k){
@@ -1545,10 +1550,10 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       });
     });
     if(o.impostazioni && o.impostazioni[io]) scritture.push(["users/"+user.uid+"/impostazioni/personali", o.impostazioni[io]]);
-    if(!confirm("Carico "+comuni+" righe comuni e "+tue+" righe tue"
-      +(saltate ? " (salto "+saltate+" righe private dell'altra persona)" : "")
-      +". Le righe con lo stesso codice vengono sovrascritte, le altre restano. Procedo?")) return;
-    toast("Caricamento in corso…");
+    if(!confirm("Upload "+comuni+" shared rows and "+tue+" of your rows"
+      +(saltate ? " (skipping "+saltate+" private rows of the other person)" : "")
+      +"? Rows with the same code are overwritten, the others stay.")) return;
+    toast("Uploading…");
     var catena=Promise.resolve();
     for(var i=0;i<scritture.length;i+=400){
       (function(lotto){
@@ -1560,11 +1565,11 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       })(scritture.slice(i,i+400));
     }
     catena.then(function(){
-      toast("Caricate "+scritture.length+" righe");
+      toast("Uploaded "+scritture.length+" rows");
       if(!CASA) onUser(user);
     }).catch(function(e){
       console.error(e);
-      toast("Caricamento non riuscito"+(e && e.code ? " ("+e.code+")" : ""));
+      toast("Upload failed"+(e && e.code ? " ("+e.code+")" : ""));
     });
   }
 
@@ -1593,32 +1598,32 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     $("onb-imp").hidden=!benvenuto; $("onb-man").hidden=!benvenuto; $("onb-niente").hidden=!benvenuto;
     $("onb-ok").hidden=benvenuto; $("onb-more").hidden=benvenuto; $("onb-redo").hidden=benvenuto || !imp.length;
     if(benvenuto){
-      $("onb-t").textContent="Benvenuto"+(ME_NAME ? ", "+ME_NAME : "");
-      $("onb-p").textContent="Prima di iniziare, aggiungi le spese comuni del "+now.getFullYear()+" che hai pagato tu: puoi importarle dall'estratto conto o inserirle a mano. "
-        +"Così il conto tra te e "+PARTNER+" è completo.";
+      $("onb-t").textContent="Welcome"+(ME_NAME ? ", "+ME_NAME : "");
+      $("onb-p").textContent="Before you start, add the shared expenses of "+now.getFullYear()+" that you paid: import them from a bank statement or add them by hand. "
+        +"Then the balance between you and "+PARTNER+" is complete.";
     }else{
       var tot=0; imp.forEach(function(e){ tot+=e.amount||0; });
-      $("onb-t").textContent="Importazione iniziale";
+      $("onb-t").textContent="Initial import";
       $("onb-p").textContent = imp.length
-        ? "Hai aggiunto "+imp.length+(imp.length===1?" spesa comune pagata":" spese comuni pagate")+" da te, per "+eur(tot)
-          +": metà, "+eur(tot/2)+", è a carico di "+PARTNER+". Controllale nei mesi con le frecce ‹ › in alto."
-        : "Nessuna spesa importata. Puoi importare un file o chiudere qui.";
+        ? "You added "+imp.length+(imp.length===1?" shared expense":" shared expenses")+" paid by you, for "+eur(tot)
+          +": half, "+eur(tot/2)+", is "+PARTNER+"'s share. Check them month by month with the ‹ › arrows at the top."
+        : "No expenses imported. You can import a file or stop here.";
     }
   }
   $("onb-imp").onclick=function(){ openImp(); };
   $("onb-more").onclick=function(){ openImp(); };
   $("onb-man").onclick=function(){
-    salvaAvvio("fatto","mano").then(function(){ openAdd({scope:"casa"}); toast("Scegli «Io, dalla mia carta» in «Chi ha pagato»"); });
+    salvaAvvio("fatto","mano").then(function(){ openAdd({scope:"casa"}); toast("Under “Who paid”, choose “Me”"); });
   };
   $("onb-niente").onclick=function(){ salvaAvvio("fatto","niente"); };
   $("onb-ok").onclick=function(){ onbForzata=false; salvaAvvio("fatto","file").then(renderOnb); };
   $("onb-reopen").onclick=function(ev){ ev.preventDefault(); onbForzata=true; S.tab="mov"; render(); window.scrollTo(0,0); };
   $("onb-redo").onclick=function(){
     var imp=importateDaMe(); if(!imp.length) return;
-    if(!confirm("Cancello le "+imp.length+" spese che hai importato, poi puoi rifare l'importazione. Le spese inserite a mano restano. Procedo?")) return;
+    if(!confirm("Delete the "+imp.length+" expenses you imported? Then you can import again. Expenses added by hand stay.")) return;
     Promise.all(imp.map(function(e){ return db.doc("shared/expenses/"+e._id).delete(); }))
-      .then(function(){ toast("Importazione annullata"); openImp(); })
-      .catch(function(){ toast("Non è stato possibile annullare"); });
+      .then(function(){ toast("Import undone"); openImp(); })
+      .catch(function(){ toast("Could not undo the import"); });
   };
 
   /* ---------- importa da estratto conto ----------
@@ -1630,12 +1635,12 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     if(!db) return;
     IMP.modo = modo==="recupero" ? "recupero" : "avvio";
     var rec=IMP.modo==="recupero";
-    $("imptitle").textContent = rec ? "Recupera da estratto conto" : "Importa da estratto conto";
+    $("imptitle").textContent = rec ? "Recover from bank statement" : "Import from bank statement";
     document.querySelector("#imp-1 .note").textContent = rec
-      ? "Scarica dalla tua banca la lista dei movimenti in CSV o in Excel, poi sceglila qui. Il file resta su questo dispositivo: nell'app finiscono solo le righe che assegni, come spese condivise pagate da te o come spese tue."
-      : "Scarica dalla tua banca la lista dei movimenti in CSV o in Excel, poi sceglila qui. Il file resta su questo dispositivo: nell'app finiscono solo le righe che spunti, come spese comuni pagate da te.";
+      ? "Download your transactions from your bank as CSV or Excel, then choose the file here. The file stays on this device: only the rows you assign go into the app, as shared expenses paid by you or as your own expenses."
+      : "Download your transactions from your bank as CSV or Excel, then choose the file here. The file stays on this device: only the rows you tick go into the app, as shared expenses paid by you.";
     var cs=$("imp-conto"), cl=contiLab(); $("imp-contow").hidden = !rec || !cl.length;
-    cs.innerHTML='<option value="">Altro</option>'+cl.map(function(c){ return '<option value="'+esc(c)+'">'+esc(c)+'</option>'; }).join(""); cs.value=contoPred();
+    cs.innerHTML='<option value="">Other</option>'+cl.map(function(c){ return '<option value="'+esc(c)+'">'+esc(c)+'</option>'; }).join(""); cs.value=contoPred();
     $("imp-1").hidden=false; $("imp-2").hidden=true; $("imp-err").hidden=true;
     $("scrim-imp").hidden=false;
   }
@@ -1740,7 +1745,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var data=rows.slice(first), w=0;
     data.forEach(function(r){ if(r.length>w) w=r.length; });
     var hr=first>0 ? rows[first-1] : [], head=[];
-    for(var j=0;j<w;j++){ var h=String(hr[j]==null?"":hr[j]).trim(); head.push(h || "Colonna "+(j+1)); }
+    for(var j=0;j<w;j++){ var h=String(hr[j]==null?"":hr[j]).trim(); head.push(h || "Column "+(j+1)); }
     return {head:head, data:data};
   }
   function indovinaColonne(head, data){
@@ -1765,8 +1770,8 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     }
     var cd=pick(/data|date/i, nD, []);
     var noNum=[cd]; head.forEach(function(h,j){ if(/saldo|balance|fee|commission|tasso/i.test(h)) noNum.push(j); });
-    var ca=pick(/importo|amount|uscit|addebit|dare|ammontare|valore/i, nN, noNum);
-    var cs=pick(/descr|causale|dettagl|benefic|esercente|merchant|controparte|operazione|note/i, lenT, [cd,ca]);
+    var ca=pick(/importo|amount|uscit|addebit|dare|ammontare|valore|debit|paid ?out|money ?out|withdraw/i, nN, noNum);
+    var cs=pick(/descr|causale|dettagl|benefic|esercente|merchant|controparte|operazione|note|details|payee|reference|memo|narrative/i, lenT, [cd,ca]);
     return {cd:cd, ca:ca, cs:cs};
   }
   // mm/gg se in qualche data il secondo numero supera 12 e il primo no
@@ -1780,15 +1785,15 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
   }
   function hashStr(s){ var h=5381; for(var i=0;i<s.length;i++){ h=((h<<5)+h+s.charCodeAt(i))|0; } return (h>>>0).toString(36); }
   var CAT_GUESS=[
-    [/esselunga|\bcoop\b|conad|lidl|carrefour|\bpam\b|eurospin|\baldi\b|penny|\bcrai\b|despar|supermerc|simply|\bunes\b|naturasi|panific|macelleria|frutta|alimentari|tigre|todis|\bmd\b/i, "Spesa alimentare"],
-    [/ristor|pizz|trattoria|osteria|\bbar\b|caff[eè]|sushi|burger|mcdonald|deliveroo|glovo|just ?eat|uber ?eats|aperitiv|\bpub\b|bistrot|gelat|enoteca/i, "Cene e aperitivi fuori"],
-    [/arcaplanet|zooplus|veterin|maxi ?zoo|isola dei tesori|agrifarma/i, "Animali, cibo e veterinario"],
-    [/\beni\b|\bq8\b|tamoil|\besso\b|\bip\b|\bapi\b|benzin|carbur|autostrad|telepass|parchegg|meccanic|gommist|officina/i, "Auto, carburante e manutenzione"],
-    [/ikea|leroy|brico|\bobi\b|flying tiger|maisons du monde|zara home|acqua e sapone|tedi\b/i, "Casa e piccoli acquisti"]
+    [/esselunga|\bcoop\b|conad|lidl|carrefour|\bpam\b|eurospin|\baldi\b|penny|\bcrai\b|despar|supermerc|simply|\bunes\b|naturasi|panific|macelleria|frutta|alimentari|tigre|todis|\bmd\b|tesco|sainsbury|\basda\b|waitrose|morrisons|walmart|whole ?foods|grocer|supermarket/i, "Groceries"],
+    [/ristor|pizz|trattoria|osteria|\bbar\b|caff[eè]|sushi|burger|mcdonald|deliveroo|glovo|just ?eat|uber ?eats|aperitiv|\bpub\b|bistrot|gelat|enoteca|restaurant|\bcafe\b|coffee|starbucks/i, "Eating out"],
+    [/arcaplanet|zooplus|veterin|maxi ?zoo|isola dei tesori|agrifarma/i, "Pets, food and vet"],
+    [/\beni\b|\bq8\b|tamoil|\besso\b|\bip\b|\bapi\b|benzin|carbur|autostrad|telepass|parchegg|meccanic|gommist|officina|\bshell\b|\bbp\b|\bfuel\b|petrol|parking/i, "Car, fuel and maintenance"],
+    [/ikea|leroy|brico|\bobi\b|flying tiger|maisons du monde|zara home|acqua e sapone|tedi\b/i, "Home and small purchases"]
   ];
   function indovinaCat(s){
     for(var i=0;i<CAT_GUESS.length;i++){ if(CAT_GUESS[i][0].test(s)) return CAT_GUESS[i][1]; }
-    return "Altro condiviso";
+    return "Other shared";
   }
 
   $("imp-file").onchange=function(){
@@ -1796,13 +1801,13 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     if(!f) return;
     var nome=f.name.toLowerCase();
     $("imp-err").hidden=true;
-    if(/\.pdf$/.test(nome)){ impErr("Il PDF non si può leggere. Dalla banca scarica i movimenti in CSV o in Excel."); return; }
+    if(/\.pdf$/.test(nome)){ impErr("PDF files cannot be read. Download your transactions from your bank as CSV or Excel."); return; }
     f.arrayBuffer().then(function(buf){
       if(/\.xlsx?$/.test(nome)) return caricaXLSX().then(function(){ return righeDaXLSX(buf); });
       return parseCSV(decodifica(buf));
     }).then(function(rows){
       var p=prepara(rows||[]);
-      if(!p){ impErr("Non trovo righe con una data e un importo. È la lista dei movimenti?"); return; }
+      if(!p){ impErr("No rows with a date and an amount found. Is this the list of transactions?"); return; }
       IMP.head=p.head; IMP.data=p.data; IMP.sel={}; IMP.cat={}; IMP.tipo={};
       var g=indovinaColonne(p.head, p.data);
       ["imp-cd","imp-cs","imp-ca"].forEach(function(id){
@@ -1822,7 +1827,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
       ricalcolaImp();
     }).catch(function(e){
       console.error(e);
-      impErr("Non riesco a leggere questo file. Prova a scaricarlo dalla banca in CSV.");
+      impErr("Could not read this file. Try downloading it from your bank as CSV.");
     });
   };
   ["imp-cd","imp-cs","imp-ca","imp-seg"].forEach(function(id){ $(id).onchange=function(){ IMP.sel={}; ricalcolaImp(); }; });
@@ -1830,7 +1835,7 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
 
   function ricalcolaImp(){
     var cd=+$("imp-cd").value, cs=+$("imp-cs").value, ca=+$("imp-ca").value, neg=$("imp-seg").value==="neg";
-    $("imp-colsum").textContent="Colonne lette: "+IMP.head[cd]+" · "+IMP.head[cs]+" · "+IMP.head[ca]+" (cambia)";
+    $("imp-colsum").textContent="Columns read: "+IMP.head[cd]+" · "+IMP.head[cs]+" · "+IMP.head[ca]+" (change)";
     var md=meseGiorno(cd), visti={}, out=[];
     IMP.data.forEach(function(r){
       var d=parseDate(r[cd], md), n=parseNum(r[ca]);
@@ -1866,38 +1871,38 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     });
     var MAX=300;
     $("imp-info").textContent = vis.length
-      ? vis.length+(vis.length===1?" uscita":" uscite")+" nel periodo"+(q?" con «"+q+"»":"")
-        +(IMP.modo==="recupero" ? ". Per ogni riga scegli se è una spesa condivisa pagata da te, una spesa tua, o se saltarla" : ". Spunta solo le spese comuni pagate da te")+(vis.length>MAX?". Ne vedi "+MAX+": restringi il periodo o cerca.":".")
-        +" «Forse già nell'app» vuol dire che c'è già una spesa con la stessa cifra in quei giorni, per esempio inserita a mano."
-      : "Nessuna uscita in questo periodo.";
+      ? vis.length+(vis.length===1?" payment":" payments")+" in this period"+(q?" with “"+q+"”":"")
+        +(IMP.modo==="recupero" ? ". For each row, choose a shared expense paid by you, your own expense, or skip" : ". Tick only the shared expenses you paid")+(vis.length>MAX?". You see "+MAX+": shorten the period or search.":".")
+        +" “Maybe already in the app” means there is already an expense with the same amount within a few days, for example one added by hand."
+      : "No payments in this period.";
     var list=$("imp-list"); list.innerHTML="";
     vis.slice(0,MAX).forEach(function(r){
       var rec=IMP.modo==="recupero", row=document.createElement(rec?"div":"label"); row.className="improw";
       var cb;
       if(rec){
-        cb=document.createElement("select"); cb.setAttribute("aria-label","Di chi è"); cb.style.width="auto"; cb.style.padding=".2rem .3rem"; cb.style.fontSize=".78rem";
-        [["","Salta"],["casa","Condivisa"],["mio","Mia"]].forEach(function(x){ var o=document.createElement("option"); o.value=x[0]; o.textContent=x[1]; cb.appendChild(o); });
+        cb=document.createElement("select"); cb.setAttribute("aria-label","Whose"); cb.style.width="auto"; cb.style.padding=".2rem .3rem"; cb.style.fontSize=".78rem";
+        [["","Skip"],["casa","Shared"],["mio","Mine"]].forEach(function(x){ var o=document.createElement("option"); o.value=x[0]; o.textContent=x[1]; cb.appendChild(o); });
         cb.value=IMP.sel[r.k]||""; cb.onchange=function(){ if(cb.value) IMP.sel[r.k]=cb.value; else delete IMP.sel[r.k]; renderImp(); };
       }else{
         cb=document.createElement("input"); cb.type="checkbox"; cb.checked=!!IMP.sel[r.k];
         cb.onchange=function(){ if(cb.checked) IMP.sel[r.k]=1; else delete IMP.sel[r.k]; contaImp(); };
       }
-      var ds=document.createElement("span"); ds.className="ds"; ds.textContent=r.s || "(senza descrizione)"; ds.title=r.s;
+      var ds=document.createElement("span"); ds.className="ds"; ds.textContent=r.s || "(no description)"; ds.title=r.s;
       var a=document.createElement("span"); a.className="a"; a.textContent=eur(r.a);
       var meta=document.createElement("span"); meta.className="meta";
       var dt=document.createElement("span"); dt.textContent=r.d.split("-").reverse().join("/");
       meta.appendChild(dt);
-      if(r.imp || r.gia){ var g=document.createElement("span"); g.className="gia"; g.textContent=r.imp ? "già importata" : "forse già nell'app"; meta.appendChild(g); }
+      if(r.imp || r.gia){ var g=document.createElement("span"); g.className="gia"; g.textContent=r.imp ? "already imported" : "maybe already in the app"; meta.appendChild(g); }
       var mia = rec && IMP.sel[r.k]==="mio", lista = mia ? catsMie() : CAT_COND;
-      var sc=document.createElement("select"); sc.setAttribute("aria-label","Categoria");
+      var sc=document.createElement("select"); sc.setAttribute("aria-label","Category");
       lista.forEach(function(n){ var o=document.createElement("option"); o.value=n; o.textContent=n; sc.appendChild(o); });
-      var gc=indovinaCat(r.s); if(mia && lista.indexOf(gc)<0) gc = lista.indexOf("Altro personale")>=0 ? "Altro personale" : lista[0];
+      var gc=indovinaCat(r.s); if(mia && lista.indexOf(gc)<0) gc = lista.indexOf("Other personal")>=0 ? "Other personal" : lista[0];
       sc.value = (IMP.cat[r.k] && lista.indexOf(IMP.cat[r.k])>=0) ? IMP.cat[r.k] : gc;
       sc.onchange=function(){ IMP.cat[r.k]=sc.value; };
       if(!rec || IMP.sel[r.k]) meta.appendChild(sc);
       if(!mia && (!rec || IMP.sel[r.k])){
-        var st=document.createElement("select"); st.setAttribute("aria-label","Da quale budget esce");
-        [["corr","Spese correnti"],["una","Una tantum"]].forEach(function(x){ var o=document.createElement("option"); o.value=x[0]; o.textContent=x[1]; st.appendChild(o); });
+        var st=document.createElement("select"); st.setAttribute("aria-label","Which budget it counts in");
+        [["corr","Everyday spending"],["una","One-off"]].forEach(function(x){ var o=document.createElement("option"); o.value=x[0]; o.textContent=x[1]; st.appendChild(o); });
         st.value=IMP.tipo[r.k] || "corr";
         st.onchange=function(){ IMP.tipo[r.k]=st.value; };
         meta.appendChild(st);
@@ -1913,23 +1918,23 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     var b=$("imp-save");
     b.disabled=!sel.length;
     b.textContent = IMP.modo==="recupero"
-      ? (sel.length ? "Aggiungi "+sel.length+(sel.length===1?" movimento":" movimenti")+", "+eur(tot) : "Assegna le righe che mancano")
-      : sel.length ? "Aggiungi "+sel.length+(sel.length===1?" spesa":" spese")+", "+eur(tot)+" (metà a carico di "+PARTNER+")"
-      : "Spunta le spese comuni pagate da te";
+      ? (sel.length ? "Add "+sel.length+(sel.length===1?" transaction":" transactions")+", "+eur(tot) : "Assign the missing rows")
+      : sel.length ? "Add "+sel.length+(sel.length===1?" expense":" expenses")+", "+eur(tot)+" (half is "+PARTNER+"'s share)"
+      : "Tick the shared expenses you paid";
   }
   function salvaRecupero(sel){
     var nC=0, nM=0, tC=0, conto=$("imp-conto").value||"";
     sel.forEach(function(r){ if(IMP.sel[r.k]==="casa"){ nC++; tC+=r.a; } else nM++; });
-    if(!confirm("Aggiungo "+(nC?nC+(nC===1?" spesa condivisa":" spese condivise")+" pagate da te"+(nM?" e ":""):"")+(nM?nM+(nM===1?" spesa tua":" spese tue"):"")
-      +(nC?". Metà delle condivise, "+eur(tC/2)+", va nel conto con "+PARTNER:"")+". Procedo?")) return;
+    if(!confirm("Add "+(nC?nC+(nC===1?" shared expense":" shared expenses")+" paid by you"+(nM?" and ":""):"")+(nM?nM+(nM===1?" expense of your own":" expenses of your own"):"")
+      +(nC?"? Half of the shared ones, "+eur(tC/2)+", goes into the balance with "+PARTNER+".":"?"))) return;
     var b=$("imp-save"); b.disabled=true; var ora=Date.now();
     Promise.all(sel.map(function(r,i){
-      var casa=IMP.sel[r.k]==="casa", cat=IMP.cat[r.k] || (casa ? indovinaCat(r.s) : (catsMie().indexOf("Altro personale")>=0?"Altro personale":catsMie()[0]));
-      var d={amount:r.a, cat:cat, date:r.d, month:r.d.slice(0,7), note:r.s.slice(0,80), fonte:"estratto conto", conto:conto, ts:ora+i};
+      var casa=IMP.sel[r.k]==="casa", cat=IMP.cat[r.k] || (casa ? indovinaCat(r.s) : (catsMie().indexOf("Other personal")>=0?"Other personal":catsMie()[0]));
+      var d={amount:r.a, cat:cat, date:r.d, month:r.d.slice(0,7), note:r.s.slice(0,80), fonte:"bank statement", conto:conto, ts:ora+i};
       if(casa){ var t=IMP.tipo[r.k]||"corr"; d.tipo=t; d.oneoff=(t==="una"); d.chi=ME; d.by=ME; return db.doc("shared/expenses/x"+r.k).set(d); }
       return db.doc("data/users/"+uid+"/expenses/x"+r.k).set(d);
-    })).then(function(){ closeImp(); render(); toast("Aggiunti "+sel.length+(sel.length===1?" movimento":" movimenti")+" dall'estratto conto"); })
-      .catch(function(e){ console.error(e); toast("Non è stato possibile salvare tutto: riprova"); })
+    })).then(function(){ closeImp(); render(); toast("Added "+sel.length+(sel.length===1?" transaction":" transactions")+" from the bank statement"); })
+      .catch(function(e){ console.error(e); toast("Could not save everything: try again"); })
       .then(function(){ b.disabled=false; contaImp(); });
   }
   $("imp-save").onclick=function(){
@@ -1937,23 +1942,23 @@ details#imp-cols summary{cursor:pointer;color:var(--deep)}
     if(!sel.length || !db) return;
     if(IMP.modo==="recupero"){ salvaRecupero(sel); return; }
     sel.forEach(function(r){ tot+=r.a; });
-    if(!confirm("Aggiungo "+sel.length+(sel.length===1?" spesa comune pagata":" spese comuni pagate")+" da te, per "+eur(tot)
-      +". Metà, "+eur(tot/2)+", va nel conto di quanto ti deve "+PARTNER+". Procedo?")) return;
+    if(!confirm("Add "+sel.length+(sel.length===1?" shared expense":" shared expenses")+" paid by you, for "+eur(tot)
+      +"? Half, "+eur(tot/2)+", is added to what "+PARTNER+" owes you.")) return;
     var b=$("imp-save"); b.disabled=true;
     var ora=Date.now();
     Promise.all(sel.map(function(r, i){
       var t=IMP.tipo[r.k] || "corr";
       return db.doc("shared/expenses/x"+r.k).set({
         amount:r.a, cat:IMP.cat[r.k] || indovinaCat(r.s), date:r.d, month:r.d.slice(0,7),
-        note:r.s.slice(0,80), tipo:t, oneoff:(t==="una"), chi:ME, by:ME, avvio:true, fonte:"estratto conto", ts:ora+i
+        note:r.s.slice(0,80), tipo:t, oneoff:(t==="una"), chi:ME, by:ME, avvio:true, fonte:"bank statement", ts:ora+i
       });
     })).then(function(){
       return salvaAvvio("importato","file");
     }).then(function(){
       closeImp(); onbForzata=true; renderOnb(); window.scrollTo(0,0);
-      toast("Aggiunte "+sel.length+(sel.length===1?" spesa":" spese"));
+      toast("Added "+sel.length+(sel.length===1?" expense":" expenses"));
     }).catch(function(e){
-      console.error(e); toast("Non è stato possibile salvare tutto: riprova");
+      console.error(e); toast("Could not save everything: try again");
     }).then(function(){ b.disabled=false; contaImp(); });
   };
 

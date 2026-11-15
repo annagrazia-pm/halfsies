@@ -1,6 +1,6 @@
 /* Halfsies: deployment settings.
-   Fill in these values for your own deployment (see "Deploy your own copy" in README.md).
-   While apiKey is empty, the app shows "Il collegamento al database non è configurato".
+   Fill in these values for your own deployment (see "Deploy your copy" in README.md).
+   While apiKey is empty, the app shows "The database connection is not configured".
 
    The Firebase web config is not a secret: it ships to every browser that opens the site.
    Who can read and write data is decided by the Firestore security rules (firestore.rules). */

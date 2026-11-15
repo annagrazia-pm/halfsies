@@ -1,200 +1,104 @@
 # Halfsies
 
-A mobile-first web app for a two-person household: shared expenses split in half,
-a shared budget, and each person's private finances, all in one place.
-
-It runs as a single HTML file, with Google sign-in and a Firestore database, and
-deploys for free on Firebase and Vercel.
-
-> The interface is in Italian. This README is in English.
+A budget app for two people who share a home. Shared expenses split in half. Each person also keeps a private budget.
 
 <p>
-  <img src="docs/screenshots/movimenti.png" width="150" alt="Movimenti: the month's transactions, what you spent and what you owe">
-  <img src="docs/screenshots/nuovo-movimento.png" width="150" alt="Nuovo movimento: add an expense, tick 'shared' to split it in half">
-  <img src="docs/screenshots/budget.png" width="150" alt="Budget: joint account balance and shared budget by category">
-  <img src="docs/screenshots/report.png" width="150" alt="Report: spending by category since January">
-  <img src="docs/screenshots/patrimonio.png" width="150" alt="Patrimonio: private net worth over the year">
+  <img src="docs/screenshots/transactions.png" width="150" alt="Transactions screen">
+  <img src="docs/screenshots/new-transaction.png" width="150" alt="New transaction form">
+  <img src="docs/screenshots/budget.png" width="150" alt="Budget screen">
+  <img src="docs/screenshots/report.png" width="150" alt="Report screen">
+  <img src="docs/screenshots/net-worth.png" width="150" alt="Net worth screen">
 </p>
 
-*Screenshots use sample data.*
+*The screenshots show sample data.*
 
-## What it does
+## Features
 
-- **Movimenti (transactions)**: every expense and income of the month, by day, with
-  filters (all / shared / mine), search and categories. Two cards show what you spent
-  this month and how much one person owes the other.
-- **+ (add)**: one form for any expense. Tick *Condivisa* ("shared") and it is split in
-  half, and the app asks who paid: you, your partner or the joint account. Bills have a
-  service period, so they count in the right month. Recurring items are set once.
-- **Budget**: two parts. *Insieme* ("together"): joint account balance, shared spending
-  against a budget you set together, recurring items and monthly contributions.
-  *Il tuo* ("yours", private): monthly plan (income − fixed costs − savings = what you
-  can spend) and your own categories.
-- **Report**: your spending plus your half of the shared spending, by category and
-  month by month, and the biggest expenses.
-- **Patrimonio (net worth, private)**: your accounts, savings, investments and debts;
-  value on 1 January and today; a monthly chart; money in and out each month.
-  Accounts marked as automatic update themselves with the transactions you record.
-- **Import from bank statements**: reads a CSV or Excel file in the browser; for each
-  row you choose shared, mine or skip. Re-importing the same file does not create
-  duplicates.
-- **Backup**: download everything you can see as a JSON file, and load it back.
+- Add an expense and tick "Shared". The app splits it in half and records who paid.
+- See how much one person owes the other, and record repayments.
+- Set a shared budget and a private monthly plan.
+- See a report by category and by month, and a private net worth chart.
+- Import transactions from a bank statement (CSV or Excel). The file stays in the browser.
 
-## How it is built
+## How it works
 
-- **One static file**: `index.html` (HTML, CSS and vanilla JavaScript, about 1,950 lines).
-  No framework, no build step, no server code.
-- **Firebase Authentication** (Google sign-in) and **Cloud Firestore**, with the
-  Firebase JS SDK 10.14.1 (compat) loaded from Google's CDN. Real-time listeners keep
-  both phones in sync; offline persistence keeps the app usable with a weak connection.
-- **Security in the database, not in the UI**: `firestore.rules` lets in only the
-  household's Google accounts. Shared data (`shared/**`) is readable by both people;
-  private data (`users/<uid>/**`) only by its owner.
-- **Vercel** static hosting. `vercel.json` forwards `/__/auth` to Firebase, so Google
-  sign-in runs on the site's own domain. Without this, Safari on iPhone blocks the
-  login ("missing initial state").
-- **SheetJS** 0.18.5 is loaded from cdnjs only when someone imports an Excel file.
-- **Safe imports**: imports and backups write rows with stable ids, so loading the
-  same file twice does not duplicate anything.
+- The whole app is one file, `index.html`, in plain JavaScript. There is no build step.
+- Firebase Authentication gives Google login. Cloud Firestore stores the data.
+- `firestore.rules` lets only the two household accounts read the data. Each person's private data is visible to that person only.
+- Vercel hosts the site. `vercel.json` sends `/__/auth` to Firebase, because Safari on iPhone blocks Google login from a different domain.
 
-### Files
+Code comments are in Italian.
 
-| File | What it is |
-|---|---|
-| `index.html` | The whole app |
-| `config.js` | Deployment settings: site domain and Firebase web config (empty in this repo) |
-| `vercel.json` | Auth forwarding to Firebase and a `noindex` header |
-| `firestore.rules` | Firestore security rules (pasted in the Firebase console) |
-| `examples/start-file.json` | Start file that creates the household on first login |
-| `docs/screenshots/` | Images for this README |
+## Deploy your copy
 
-### Data model
+You need a Google account, a GitHub account and a Vercel account. The free plans are enough.
 
-The app uses two kinds of paths (see `fsPath()` in `index.html`):
+In the steps below, `YOUR_PROJECT_ID` is your Firebase project ID. `YOUR_DOMAIN` is the domain that Vercel gives your site, for example `my-halfsies.vercel.app`.
 
-- `shared/casa`: the household document. `members: [{key, name, email}]` and the
-  shared `budget: {cats: {category: monthly amount}, by, at}`.
-- `shared/casa/<collection>`: shared data. `expenses`, `bills`, `recurring`,
-  `deposits`, `depositsRec`, `conguagli` (refunds and opening balances), `passaggi`
-  (an expense handed over to the other person). In shared expenses, `chi` is who
-  paid (a member `key` or `conto` for the joint account) and `by` is who added it.
-- `users/<uid>/<collection>`: private data. `expenses`, `recurring`, `income`,
-  `incomeRec`, `giroconti` (transfers between your accounts), `patrimonio`
-  (net worth items), `patrimonioStorico` (month-end history) and `impostazioni`
-  (personal settings).
+### 1. Create the Firebase project
 
-## Deploy your own copy
+1. Fork this repository.
+2. In the [Firebase console](https://console.firebase.google.com), create a project. Write down the project ID.
+3. Go to **Authentication → Sign-in method**. Enable **Google**.
+4. Go to **Firestore Database → Create database**. Choose a location near you and **production mode**. You cannot change the location later.
 
-You need a Google account, a GitHub account and a Vercel account. Everything below
-fits in the free plans (Firebase Spark, Vercel Hobby). It takes about 30 minutes.
+### 2. Publish the security rules
 
-In the steps, `YOUR_PROJECT_ID` is your Firebase project ID and `YOUR_DOMAIN` is the
-domain Vercel gives your site (for example `my-halfsies.vercel.app`).
+1. In `firestore.rules`, replace `you@example.com` and `partner@example.com` with the two Google accounts. Use lowercase.
+2. In the Firebase console, go to **Firestore Database → Rules**. Paste the file and click **Publish**.
 
-### 1. Get the code
+Firebase uses the published rules, not the file. Publish again after each change.
 
-Fork this repository on GitHub, or clone it and push it to a new repository of yours.
+### 3. Fill in the config
 
-### 2. Create the Firebase project
+1. In the Firebase console, go to **Project settings → General → Your apps**. Add a **Web** app.
+2. Copy the `firebaseConfig` values into the `firebase` block of `config.js`.
+3. In `vercel.json`, replace `YOUR_PROJECT_ID` in both lines.
+4. Commit and push.
 
-1. Open the [Firebase console](https://console.firebase.google.com) and click
-   **Create a project**. Google Analytics is not needed. Note the **project ID**.
-2. **Build → Authentication → Get started → Sign-in method → Google → Enable**.
-   Choose a support email and save.
-3. **Build → Firestore Database → Create database**. Pick a location close to you
-   (for example `europe-west8`, Milan; it cannot be changed later) and start in
-   **production mode**.
+The Firebase config is not secret. Every browser receives it. The security rules protect the data.
 
-### 3. Set the security rules
+### 4. Deploy on Vercel
 
-1. In `firestore.rules`, replace `you@example.com` and `partner@example.com` with the
-   two Google accounts of your household, in lowercase.
-2. In the Firebase console: **Firestore Database → Rules**, paste the whole file and
-   click **Publish**.
+1. In [Vercel](https://vercel.com), click **Add New → Project** and import your fork.
+2. Set **Framework Preset** to **Other**. Leave the build settings empty.
+3. Click **Deploy**. Write down `YOUR_DOMAIN`.
 
-The file in the repository is only a copy: the rules that count are the ones published
-in the console. Publish them again every time you change the file.
+### 5. Allow Google login on your domain
 
-### 4. Register the web app and fill in `config.js`
+1. In `config.js`, set `site` to `YOUR_DOMAIN`, without `https://`.
+2. In the Firebase console, go to **Authentication → Settings → Authorized domains**. Add `YOUR_DOMAIN`.
+3. In the [Google Cloud console](https://console.cloud.google.com), open the same project. Go to **APIs & Services → Credentials** and open **Web client (auto created by Google Service)**. Under **Authorized redirect URIs**, add `https://YOUR_DOMAIN/__/auth/handler`. The change can take a few minutes.
+4. Commit and push. Vercel deploys again.
 
-1. **Project settings (gear icon) → General → Your apps → Web (`</>`)**. Give it a
-   name. You do not need Firebase Hosting.
-2. Copy the values of `firebaseConfig` into the `firebase` block of `config.js`.
-3. Leave `site` empty for now: you get the domain in the next step.
-4. In `vercel.json`, replace `YOUR_PROJECT_ID` with your Firebase project ID
-   (in both rewrites).
-5. Commit and push.
+### 6. Create the household
 
-These values are not secret: every visitor's browser receives them. Access to the
-data is controlled by the security rules. GitHub may still flag the `apiKey` as a
-"Google API key": for a Firebase web app this is expected.
+1. Copy `examples/start-file.json`. Write one entry for each person:
+   - `key`: a short id in lowercase, for example `anna`
+   - `name`: the name that the app shows
+   - `email`: the same Google account as in the rules
+2. Open your site and click **Sign in with Google**.
+3. The app shows **Start file missing**. Click **Upload the start file** and choose your file.
+4. The second person opens the site and uses their Google account.
 
-### 5. Deploy on Vercel
+Optional: to limit the API key, go to **APIs & Services → Credentials** in the Google Cloud console. Open the browser key and allow only `https://YOUR_DOMAIN/*` and `https://YOUR_PROJECT_ID.firebaseapp.com/*`.
 
-1. In [Vercel](https://vercel.com): **Add New → Project**, then import your repository.
-2. Framework preset: **Other**. Leave the build command and output directory empty.
-3. Click **Deploy**. Note the domain Vercel gives you: this is `YOUR_DOMAIN`.
+### If something fails
 
-### 6. Make Google sign-in work on your domain
+- **"The database connection is not configured"**: `apiKey` in `config.js` is empty.
+- **"Account not allowed"**: the account is not in the published rules or in the start file.
+- **"This address is not authorized in Firebase"**: add the domain in **Authorized domains**.
+- **Login fails on iPhone only**: check `site` in `config.js`, the project ID in `vercel.json` and the redirect URI from step 5.
 
-1. In `config.js`, set `site` to `YOUR_DOMAIN`, without `https://`
-   (for example `site: "my-halfsies.vercel.app"`).
-2. In the Firebase console: **Authentication → Settings → Authorized domains →
-   Add domain**, and add `YOUR_DOMAIN`.
-3. In the [Google Cloud console](https://console.cloud.google.com), with the same project
-   selected: **APIs & Services → Credentials → OAuth 2.0 Client IDs → Web client (auto
-   created by Google Service)**. Under **Authorized redirect URIs**, add
-   `https://YOUR_DOMAIN/__/auth/handler` and save. It can take a few minutes to work.
-4. Commit and push. Vercel deploys again by itself.
+## Run it on your computer
 
-### 7. First login
-
-1. Copy `examples/start-file.json` and edit it: one entry per person, with a short
-   `key` (lowercase, no spaces, for example `anna`), the `name` shown in the app and
-   the Google `email`. Use the same emails as in the rules.
-2. Open your site and tap **Accedi con Google** ("Sign in with Google").
-3. The app says **Manca il file di avvio** ("start file missing"): tap
-   **Carica il file di avvio** and choose your edited file. The household is created
-   and the app opens.
-4. The other person just signs in with their Google account.
-
-Each person can then set their private plan in **Le tue impostazioni** (footer) and add
-their accounts in **Patrimonio**.
-
-### 8. Optional: restrict the API key
-
-In the Google Cloud console: **APIs & Services → Credentials → API keys → Browser key
-(auto created by Firebase) → Application restrictions → Websites**. Add
-`https://YOUR_DOMAIN/*`, `https://YOUR_PROJECT_ID.firebaseapp.com/*` and, for local
-testing, `http://localhost:5173/*`.
-
-### Troubleshooting
-
-- **"Il collegamento al database non è configurato"**: `config.js` still has an empty
-  `apiKey`.
-- **"Account non abilitato"**: the Google account is not in `firestore.rules`, the
-  rules were not published, or the account is not among the start file's members.
-- **"Non riesco a leggere i dati"**: a network problem; check the connection and reload.
-- **"Questo indirizzo non è autorizzato in Firebase"**: add the domain in
-  Authentication → Settings → Authorized domains.
-- **Login fails on iPhone only**: check `site` in `config.js`, the project ID in
-  `vercel.json` and the redirect URI in the Google Cloud console (step 6).
-
-## Run it locally
-
-After step 4, from the project folder:
+After step 3, run this command in the project folder:
 
 ```bash
 python3 -m http.server 5173
 ```
 
-Then open <http://localhost:5173>. `localhost` is an authorized domain in Firebase by
-default, so Google sign-in works against your Firebase project.
-
-## Update the live site
-
-Every push to `main` deploys on Vercel. `.vercelignore` keeps the README, license,
-rules, examples and screenshots off the site.
+Then open <http://localhost:5173>. Firebase allows `localhost` by default.
 
 ## License
 
