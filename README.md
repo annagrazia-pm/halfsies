@@ -9,11 +9,11 @@ deploys for free on Firebase and Vercel.
 > The interface is in Italian. This README is in English.
 
 <p>
-  <img src="docs/screenshots/movimenti.png" width="200" alt="Movimenti: the month's transactions, what you spent and what you owe">
-  <img src="docs/screenshots/nuovo-movimento.png" width="200" alt="Nuovo movimento: add an expense, tick 'shared' to split it in half">
-  <img src="docs/screenshots/budget.png" width="200" alt="Budget: joint account balance and shared budget by category">
-  <img src="docs/screenshots/report.png" width="200" alt="Report: spending by category since January">
-  <img src="docs/screenshots/patrimonio.png" width="200" alt="Patrimonio: private net worth over the year">
+  <img src="docs/screenshots/movimenti.png" width="150" alt="Movimenti: the month's transactions, what you spent and what you owe">
+  <img src="docs/screenshots/nuovo-movimento.png" width="150" alt="Nuovo movimento: add an expense, tick 'shared' to split it in half">
+  <img src="docs/screenshots/budget.png" width="150" alt="Budget: joint account balance and shared budget by category">
+  <img src="docs/screenshots/report.png" width="150" alt="Report: spending by category since January">
+  <img src="docs/screenshots/patrimonio.png" width="150" alt="Patrimonio: private net worth over the year">
 </p>
 
 *Screenshots use sample data.*
